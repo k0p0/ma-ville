@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821125822) do
+ActiveRecord::Schema.define(version: 20170821132321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,10 +63,43 @@ ActiveRecord::Schema.define(version: 20170821125822) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.date "submit_message_date"
+    t.text "note"
+    t.bigint "report_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id"], name: "index_messages_on_report_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "priorities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.date "resolution_date"
+    t.date "submit_date"
+    t.string "address"
+    t.float "report_latitude"
+    t.float "report_longitude"
+    t.string "picture"
+    t.text "description"
+    t.bigint "degradation_id"
+    t.bigint "furniture_id"
+    t.bigint "city_id"
+    t.bigint "priority_id"
+    t.bigint "status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_reports_on_city_id"
+    t.index ["degradation_id"], name: "index_reports_on_degradation_id"
+    t.index ["furniture_id"], name: "index_reports_on_furniture_id"
+    t.index ["priority_id"], name: "index_reports_on_priority_id"
+    t.index ["status_id"], name: "index_reports_on_status_id"
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -88,8 +121,18 @@ ActiveRecord::Schema.define(version: 20170821125822) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "city_id"
+    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "messages", "reports"
+  add_foreign_key "messages", "users"
+  add_foreign_key "reports", "cities"
+  add_foreign_key "reports", "degradations"
+  add_foreign_key "reports", "furnitures"
+  add_foreign_key "reports", "priorities"
+  add_foreign_key "reports", "statuses"
+  add_foreign_key "users", "cities"
 end

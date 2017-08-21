@@ -1,0 +1,2 @@
+class Degradation < ApplicationRecord
+end

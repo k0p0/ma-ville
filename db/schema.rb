@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170820054323) do
+ActiveRecord::Schema.define(version: 20170821125822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,50 @@ ActiveRecord::Schema.define(version: 20170820054323) do
     t.datetime "updated_at", null: false
     t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent"
     t.index ["attachinariable_type", "attachinariable_id"], name: "fix"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.integer "zip_code"
+    t.integer "insee_code"
+    t.float "city_latitude"
+    t.float "city_longitude"
+    t.integer "population"
+    t.float "density"
+    t.float "area"
+    t.string "mayor"
+    t.string "region"
+    t.string "department"
+    t.string "council_address"
+    t.string "council_phone"
+    t.string "council_website"
+    t.string "council_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "degradations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "furnitures", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "priorities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

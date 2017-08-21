@@ -6,6 +6,10 @@
     <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" />
     <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+      <script src="https://cdn.statuspage.io/vendor/moment-timezone-with-data.js"></script>
+      <script src="https://cdn.statuspage.io/vendor/jstz.js"></script>
+      <script src="https://cdn.statuspage.io/vendor/localtimes.js"></script>
 
     <style>
      * {
@@ -227,23 +231,19 @@
   <body class="plain error-page-wrapper background-color background-image">
     <div class="content-container">
   <div class="head-line secondary-text-color">
-    404
+    Maintenance
   </div>
   <div class="subheader primary-text-color">
-    Oops, cette page n'existe pas.
+    Le site est actuellement en<br>
+    maintenance programmée.
   </div>
   <hr>
   <div class="clearfix"></div>
   <div class="context primary-text-color">
-    <!-- doesn't use context_content because it's ALWAYS the same thing -->
-    <p>
-      Retournez sur la page d'accueil.<br />
-      S'il vous semble que quelque chose ne fonctionne pas, reportez-nous le probl&egrave;me.
+
+    <p>Désolé pour le dérangemeent. Nous serons de retour très rapidement.
     </p>
-  </div>
-  <div class="buttons-container">
-    <a class="border-button" href="https://www.ma-ville.pw" target="_blank">Aller sur la page d'accueil</a><br><br>
-    <a class="border-button" href="mailto:contact@ma-ville." target="_blank">Signaler un probl&egrave;me sur le site</a>
+
   </div>
 </div>
 
@@ -351,7 +351,7 @@
        });
 
      };
-     var ep = new ErrorPage('body', "404", "plain");
+     var ep = new ErrorPage('body', "maintenance", "plain");
      ep.initialize();
 
      // hack to make sure content stays centered >_<

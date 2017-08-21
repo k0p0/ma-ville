@@ -1,8 +1,8 @@
 # This migration comes from attachinary (originally 20120612112526)
-class CreateAttachinaryTables < ActiveRecord::Migration
+class CreateAttachinaryTables < ActiveRecord::Migration[5.1]
   def change
     create_table :attachinary_files do |t|
-      t.references :attachinariable, polymorphic: true
+      t.references :attachinariable, polymorphic: true , index: { name: "fix" }
       t.string :scope
 
       t.string :public_id

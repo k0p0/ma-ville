@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   # resources :messages, only: [ :show ]
 
-  resources :users, only: [:index, :show, :new, :create, :update, :edit]
+  # resources :users, only: [:index, :show, :new, :create, :update, :edit]
 
   devise_for :users
   root to: 'pages#home'

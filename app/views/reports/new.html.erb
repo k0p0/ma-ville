@@ -1,2 +1,33 @@
-<h1>Reports#new</h1>
-<p>Find me in app/views/reports/new.html.erb</p>
+<!-- multistep form -->
+<div class="form-page">
+<form id="msform">
+  <!-- progressbar -->
+  <ul id="progressbar">
+    <li class="active">Adresse</li>
+    <li>Type d'incident</li>
+    <li>Détails</li>
+  </ul>
+  <!-- fieldsets -->
+  <fieldset>
+    <h2 class="fs-title">Lieu de l'incident</h2>
+    <h3 class="fs-subtitle">Où êtes-vous ?</h3>
+    <input type="text" name="address" placeholder="Indiquez votre adresse" />
+    <input type="button" name="next" class="next action-button btn btn-success" value="Next" />
+  </fieldset>
+  <fieldset>
+    <h2 class="fs-title">Type d'incident</h2>
+    <h3 class="fs-subtitle">Quel incident ?</h3>
+    <input type="text" name="furniture" placeholder="Selectionner" />
+    <input type="button" name="previous" class="previous action-button btn btn-success" value="Previous" />
+    <input type="button" name="next" class="next action-button btn btn-success" value="Next" />
+  </fieldset>
+  <fieldset>
+    <h2 class="fs-title">Informations complémentaires</h2>
+    <h3 class="fs-subtitle">Photo et description</h3>
+    <input class="file optional" type="file" name="report[picture]" id="report_picture">
+    <textarea class="form-control text optional" name="description" id="report_description" placeholder="Description"></textarea>
+    <input type="button" name="previous" class="previous action-button btn btn-success" value="Previous" />
+    <input type="submit" name="submit" class="submit action-button btn btn-success" value="Submit" />
+  </fieldset>
+</form>
+</div>

@@ -15,12 +15,11 @@
 }
 .banner p {
   font-size: 25px;
-  font-weight: lighter;
+  // font-weight: bolder;
   color: rgb(255, 255, 255);
-  opacity: 0.6;
+  // opacity: 0.8;
   margin-bottom: 30px;
 }
 
 .banner .fa-heart {
-  color:#449D44;
-}
+  color:$green;}

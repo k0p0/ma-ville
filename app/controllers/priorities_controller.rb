@@ -1,5 +1,5 @@
 class PrioritiesController < ApplicationController
-  before_action set_priority, only: [:show, :new, :update, :destroy]
+  before_action :set_priority, only: [:show, :new, :update, :destroy]
 
   def index
     @priorities = Priority.all

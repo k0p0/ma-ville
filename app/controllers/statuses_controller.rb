@@ -1,5 +1,5 @@
 class StatusesController < ApplicationController
-  before_action set_status, only: [:show, :new, :update, :destroy]
+  before_action :set_status, only: [:show, :new, :update, :destroy]
 
   def index
     ## ATTENTION ICI LE PLURIEL DE STATUS EST STATUSES QUI N'EXISTEPAS

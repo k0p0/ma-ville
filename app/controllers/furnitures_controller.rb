@@ -1,6 +1,6 @@
 class FurnituresController < ApplicationController
 
-  before_action set_furniture, only: [:show, :new, :update, :destroy]
+  before_action :set_furniture, only: [:show, :new, :update, :destroy]
 
   def index
     @furnitures = Furniture.all

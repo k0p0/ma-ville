@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action set_message, only: [:show, :new]
+  before_action :set_message, only: [:show, :new]
 
   def index
     @messages = Message.all

@@ -1,6 +1,6 @@
 class DegradationsController < ApplicationController
 
-  before_action set_degradation, only: [:show, :new, :update, :destroy]
+  before_action :set_degradation, only: [:show, :new, :update, :destroy]
 
   def index
     @degradations = Degradation.all

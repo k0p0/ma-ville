@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:new, :create]
+  skip_before_action :authenticate_user!, only: [:new, :create, :show]
 
   def index
     @reports = Report.all
@@ -16,6 +16,8 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
+    @report.submit_date = Time.now
+    @report.city = City.find_by(name: params[:report][:city])
     if @report.save
       redirect_to report_path(@report)
     else

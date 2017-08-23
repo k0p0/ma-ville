@@ -72,7 +72,7 @@ $(".previous").click(function(){
       animating = false;
     },
     //this comes from the custom easing plugin
-    easing: 'easeInOutBack'
+    // easing: 'easeInOutBack'
   });
 });
 

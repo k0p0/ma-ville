@@ -1,11 +1,32 @@
 class CitiesController < ApplicationController
-    before_action :set_city, only: [:show, :update]
+  before_action :set_city, only: [:show, :update]
+  skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
     @cities = City.all
   end
 
   def show
+    @reports = @city.reports.all.where.not(report_latitude: nil, report_longitude: nil)
+    @hash = Gmaps4rails.build_markers(@reports) do |report, marker|
+      marker.lat report.report_latitude
+      marker.lng report.report_longitude
+
+      case report.status_id
+      # id: 1, name: "En attente de traitement"
+      when 1 then marker.picture({ url: ActionController::Base.helpers.asset_path("red.png"), width: 46, height: 46 })
+        # id: 2, name: "Commande en cours"
+      when 2 then marker.picture({ url: ActionController::Base.helpers.asset_path("yellow.png"), width: 46, height: 46 })
+        # id: 3, name: "Intervention programmée"
+      when 3 then marker.picture({ url: ActionController::Base.helpers.asset_path("yellow.png"), width: 46, height: 46 })
+        # id: 4, name: "Intervention en cours"
+      when 4 then marker.picture({ url: ActionController::Base.helpers.asset_path("orange.png"), width: 46, height: 46 })
+        # id: 5, name: "Résolu"
+      when 5 then marker.picture({ url: ActionController::Base.helpers.asset_path("green.png"), width: 46, height: 46 })
+        # id: 6, name: "Annulé"
+      when 6 then marker.picture({ url: ActionController::Base.helpers.asset_path("lightblue.png"), width: 46, height: 46 })
+      end
+    end
   end
 
   def edit

@@ -1,20 +1,23 @@
-* {
-  border: solid 1px gray;
-  margin: 3px
-}
-
 .main-grid-todo {
   display: grid;
-  min-height: calc(100vh - 70px);
-  width: 100%;
+  // height: calc(100vh - 90px);
+  // width: 100%;
   grid-template-columns: 80px 25% 1fr ;
   grid-template-rows: 50px 50px 1fr ;
+
+  * {
+    border: solid 0.3px $gray;
+    margin: 5px;
+    font-size: 11px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
 }
 
 .vertical-navbar-todo {
   grid-row: 1 / span 3;
   grid-column: 1 / span 1;
-
 }
 
 .city-name-container-todo {
@@ -30,16 +33,50 @@
 .cards-container-todo {
   grid-row: 3 / span 1;
   grid-column: 2 / span 1;
-  max-height: 100vh;
+  height: calc(calc(100vh - 80px - 100px));
+  overflow: scroll;
 
   display: flex;
   flex-direction: column;
 
   .ranking-choice {
-    position: sticky;
+    position: sticky !important;
+    top: 0 !important;
+    background-color: white;
+    margin: 0 0 3px 0;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
   }
   .card-index-todo{
-    height: 300px;
+    min-height: 80px;
+    display: grid;
+    grid-template-columns: 70% 1fr ;
+    grid-template-rows: 1fr 1fr ;
+
+    .degradation {
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+      margin: 10px;
+    }
+    .furniture {
+      grid-row: 2 / span 1;
+      grid-column: 1 / span 1;
+      margin: 10px;
+    }
+    .priority {
+      grid-row: 1 / span 1;
+      grid-column: 2 / span 1;
+      margin: 10px;
+      text-align: right;
+    }
+    .creation-date {
+      grid-row: 2 / span 1;
+      grid-column: 2 / span 1;
+      margin: 10px;
+      text-align: right;
+    }
   }
 }
 
@@ -49,9 +86,7 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
-  grid-template-rows: 40px 40px 40px 200px 70px 1fr ;
-  height: 100%;
-  width: 100%;
+  grid-template-rows: 30px 30px 30px 130px 50px 1fr ;
 
   .priority {
     grid-row: 1 / span 1;
@@ -83,9 +118,9 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr ;
+    grid-template-rows: 38% 1fr ;
     height: 100%;
-    width: 100%;
+    // width: 100%;
 
     .creation-date {
       grid-column: 1 / span 1;
@@ -98,16 +133,19 @@
     }
     .title {
       text-align: center;
+      font-size: 10px;
       grid-row: 1 / span 1;
+      border: none;
+      box-shadow: none;
     }
   }
   .messages {
-    margin-top: 8px;
+    margin-top: 14px;
     grid-row: 6 / span 1;
     grid-column: 1 / span 5;
   }
   .map {
-    margin-top: 8px;
+    margin-top: 14px;
     grid-row: 6 / span 1;
     grid-column: 6 / span 5;
   }

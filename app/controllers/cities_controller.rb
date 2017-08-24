@@ -1,6 +1,7 @@
 class CitiesController < ApplicationController
-  before_action :set_city, only: [:show, :update]
-  skip_before_action :authenticate_user!, only: [:show, :index]
+
+  before_action :set_city, only: [:show, :update, :infos]
+  skip_before_action :authenticate_user!, only: [:show, :index, :infos]
 
   # def index
   #   @cities = City.all
@@ -42,6 +43,9 @@ class CitiesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def infos
   end
 
   private

@@ -1,9 +1,113 @@
-<%= content_for(:navbar_class, "navbar-home") %>
-
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 50%), url('http://res.cloudinary.com/lmdn/image/upload/v1503313131/city3_nlhljf.jpg');">
+  <%= content_for(:navbar_class, "navbar-home") %>
   <div class="banner-content">
+    <video id="video" autoplay muted loop id="video-background" width="100%">
+        <source src="http://res.cloudinary.com/lmdn/video/upload/v1503509011/video_xypjrm.mp4" type="video/mp4">
+    </video>
     <h1>J' <i class="fa fa-heart"></i> ma ville</h1>
     <p>Le geste citoyen pour améliorer le quotidien</p>
     <%= link_to 'Signaler un incident', new_report_path, class: "btn btn-success btn-lg dropdown-toggle" %>
+    <br>
+    <br>
+    <div class="button-down">
+      <a href="#service">
+        <%= image_tag("circle.png", class: "img-down") %>
+      </a>
+    </div>
   </div>
 </div>
+<div id="service" class="content-section-b" style="border-top: 0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+        <h2>Ma-Ville</h2>
+        <p class="lead" style="margin-top:0">Texte à remplacer.</p>
+      </div>
+    </div>
+    <div class="row tworow">
+      <div class="col-xs-12 col-sm-4 text-center">
+        <%= image_tag("idea.png", class: "img-body") %>
+        <h3>L'idée</h3>
+        <p class="lead">Signaler à votre mairie un incident sur votre commune en temps réel. </p>
+        <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+      </div><!-- /.col-lg-4 -->
+      <div class="col-xs-12 col-sm-4 text-center">
+        <%= image_tag("paperpen.png", class: "img-body") %>
+        <h3>Simple</h3>
+        <p class="lead">Pratique, sans inscription, quelques clics suffisent. </p>
+          <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+      </div><!-- /.col-lg-4 -->
+      <div class="col-xs-12 col-sm-4 text-center">
+        <%= image_tag("tree.png", class: "img-body") %>
+        <h3>Environnement</h3>
+        <p class="lead">Ayez le geste citoyen et aidez votre ville à retrouver ses belles couleurs </p>
+            <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+      </div><!-- /.col-lg-4 -->
+    </div>
+    <div class="row">
+      <div class="hidden-xs button-down col-sm-6 col-sm-offset-3 text-center">
+        <a href="#team">
+        <%= image_tag("circle.png", class: "img-down") %>
+        </a>
+      </div>
+    </div>
+</div>
+</div>
+<div id="team" class="content-section-c" style="border-top: 0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center wrap_title">
+        <h2>L'équipe</h2>
+        <p class="lead" style="margin-top:0">Qui sommes-nous</p>
+      </div>
+    </div><!-- /.row -->
+    <div class="row tworow">
+      <div class="col-xs-12 col-sm-3 text-center">
+        <%= image_tag("adrien.png", class: "img-avatar") %>
+        <h3>Adrien</h3>
+        <p class="lead">Worked in a logistic company in Paris. Wanted to join smaller companies and learn how to code. I also have a project in mind and LeWagon might help me. </p>
+                <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+      </div><!-- /.col-lg-3 -->
+      <div class="col-xs-12 col-sm-3 text-center">
+        <%= image_tag("baptiste.png", class: "img-avatar") %>
+        <h3>Baptiste</h3>
+        <p class="lead">I am a facilitator and an event organiser in Oxford. I want to meet people, join a team and start an amazing project. Always free for a coffee or a beer. </p>
+                  <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+      </div><!-- /.col-lg-3 -->
+      <div class="col-xs-12 col-sm-3 text-center">
+        <%= image_tag("olivier.png", class: "img-avatar") %>
+        <h3>Olivier</h3>
+        <p class="lead">I am a facilitator and an event organiser in Oxford. I want to meet people, join a team and start an amazing project. Always free for a coffee or a beer. </p>
+                    <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+      </div><!-- /.col-lg-3 -->
+      <div class="col-xs-12 col-sm-3 text-center">
+        <%= image_tag("ben.png", class: "img-avatar") %>
+        <h3>Benjamin</h3>
+        <p class="lead">Production integrator. Want to go on the other side of the mirror. Moving to London in early September, trying to land my first job as a junior web developer. </p>
+                    <!-- <p><a class="btn btn-embossed btn-primary view" role="button">View Details</a></p> -->
+      </div><!-- /.col-lg-3 -->
+    </div><!-- /.row -->
+    <div class="row">
+      <div class="button-down col-sm-6 col-sm-offset-3 text-center">
+        <a href="#top">
+        <%= image_tag("arrowu2.png", class: "img-down") %>
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('.button-down > a').click(function(e) {
+        var linkHref = $(this).attr("href");
+        $('html, body').animate({
+          scrollTop: $(linkHref).offset().top
+        });
+        e.preventDefault();
+      });
+    });
+  </script>
+

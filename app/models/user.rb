@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :messages
   belongs_to :city
-  validates :email, presence: true, allow_blank: false
-  validates :password, presence: true, allow_blank: false
+  # validates :email, presence: true, allow_blank: false
+  # validates :encrypted_password, presence: true, allow_blank: false
 end

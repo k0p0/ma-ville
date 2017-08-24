@@ -1,11 +1,12 @@
-<div class="banner">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 50%), url('http://res.cloudinary.com/lmdn/image/upload/v1503313131/city3_nlhljf.jpg');">
+  <%= content_for(:navbar_class, "navbar-home") %>
   <div class="banner-content">
     <video id="video" autoplay muted loop id="video-background" width="100%">
         <source src="http://res.cloudinary.com/lmdn/video/upload/v1503509011/video_xypjrm.mp4" type="video/mp4">
     </video>
     <h1>J' <i class="fa fa-heart"></i> ma ville</h1>
     <p>Le geste citoyen pour améliorer le quotidien</p>
-    <a class="btn btn-success btn-lg dropdown-toggle">Signaler un incident</a>
+    <%= link_to 'Signaler un incident', new_report_path, class: "btn btn-success btn-lg dropdown-toggle" %>
     <br>
     <br>
     <div class="button-down">

@@ -47,3 +47,5 @@ Degradation.create(name: "Propreté")
 Degradation.create(name: "Nuisance sonore")
 Degradation.create(name: "Sécurité")
 puts "all degradations are created"
+
+

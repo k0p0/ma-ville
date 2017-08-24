@@ -8,11 +8,12 @@ class ReportsController < ApplicationController
 
   def show
     @reports = Report.all
-    @message = Message.new
+    @messages = Message.all
     @city = City.new
     @hash = Gmaps4rails.build_markers(@report) do |report, marker|
       marker.lat report.report_latitude
       marker.lng report.report_longitude
+    @status = Status.all
     end
     # raise
 

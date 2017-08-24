@@ -1,10 +1,11 @@
  <div class="main-grid-todo">
   <div class="vertical-navbar-todo"></div>
-  <h1 class="city-name-container-todo"> Guran<%= @city.name %> </h1>
-<!--   <div class="filters-container-todo">Filters</div> -->
 
   <div class="cards-container-todo">
-    <div class="ranking-choice">By Date or By Priority</div>
+    <div class="ranking-choice">
+      <div class="by-priority">Priority</div>
+      <div class="by-date">Date</div>
+    </div>
     <% @reports.order(priority_id: :desc).each do |rep| %>
       <%= link_to report_path(rep) do%>
         <div class="card-index-todo">
@@ -24,21 +25,33 @@
     </div>
     <div class="degradation"> <%=@report.degradation.name %> </div>
     <div class="furniture"> <%=@report.furniture.name %> </div>
-    <div class="location"> <%=@report.address %> </div>
-    <div class="description">Descritpion</div>
+    <div class="location">
+      <div> Addresse: </div>
+      <div class="text"> <%=@report.address %> </div>
+      </div>
+    <div class="description">
+      <div> Descritpion: </div>
+      <div class="text"> <%=@report.description %> </div>
+    </div>
     <div class="picture-flexbox">
-      <%= image_tag "graffiti.jpg", class: "picture" %>
+      <%= image_tag "graffiti.jpg" %>
     </div>
     <div class="grid-dates-status">
       <div class="title">Created the</div>
       <div class="creation-date"><%=@report.submit_date %></div>
       <div class="title">Status</div>
-      <div class="status"><%=@report.status.name %></div>
+      <div class="status">
+        <select class="" name="report[status_id]"><option value= <%="#{@report.status.name}"%> ></option>
+          <% @status.each do |sta| %>
+            <option value="<%= sta.id %>"><%= sta.name %></option>
+          <% end %>
+        </select>
+      </div>
       <div class="title">Resolution date</div>
       <div class="resolution"><%=@report.resolution_date %></div>
     </div>
-    <div class="messages"><%=@messages %></div>
-    <div id="map" style="height: 35vh"></div>
+    <div class="messages"><%= @messages %></div>
+    <div id="map"></div>
     <% content_for(:after_js) do %>
       <script>
         $(document).ready(function() {
@@ -301,6 +314,8 @@
 
 
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyD_RAkY8s72vyF-J80ulRyBuegrj_7yuN8"></script>
+
+<!-- JS for the hover of the cards -->
 <script>
   const cards = document.querySelectorAll('.card-index-todo');
 

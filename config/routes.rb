@@ -10,8 +10,8 @@ Rails.application.routes.draw do
       get :infos
     end
   end
-
-  resources :reports, only: [ :new, :create ]
+  
+  resources :reports, only: [:new, :create ]
 
   resources :reports, only: [:index, :show, :edit, :update, :destroy] do
     resources :messages, only: [:index, :new, :create]

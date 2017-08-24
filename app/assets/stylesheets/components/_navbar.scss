@@ -37,8 +37,9 @@
 
 /* Navbar link */
 .navbar-wagon-link {
-  color: #616668;
-  font-size: 14px;
+  color: black;
+  font-weight: bolder;
+  font-size: 20px;
 }
 .navbar-wagon-link:hover {
   color: #da552f;
@@ -51,6 +52,11 @@
   box-shadow: 1px 1px 4px #E6E6E6;
   border-color: #E6E6E6;
 }
+
+.dropdown .fa {
+  color: white;
+}
+
 .navbar-wagon-dropdown-menu li > a {
   transition: color 0.3s ease;
   font-weight: lighter !important;

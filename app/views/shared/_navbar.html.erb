@@ -1,7 +1,12 @@
 <div id="top" class="navbar-wagon <%= yield(:navbar_class) %>">
   <!-- Logo -->
+
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
+    <% if current_page?(root_path) %>
+      <%= image_tag "logow.svg" %>
+    <% else %>
+      <%= image_tag "logo_b.svg" %>
+    <% end %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -39,7 +44,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "Se connecter"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 

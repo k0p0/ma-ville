@@ -18,11 +18,18 @@
 // }
 
 .banner .button-down {
-  margin-top: 300px;
+  // margin-top: 300px;
+  position: relative;
+    top: 9em;
 }
 
+.head-title {
+    position: relative;
+    top: 8em;
+  }
+
 .content-section-c .button-down {
-  margin-top: 60px;
+  margin-top: 1em;
 }
 
 .button-down {
@@ -53,10 +60,10 @@
 .content-section-b {
   // border-top: 1px solid #e7e7e7;
   // border-bottom: 1px solid #e7e7e7;
-  padding: 120px 0;
+  // padding: 120px 0;
   height: 100vh;
   background-color: white;
-  background-image: linear-gradient(-225deg, rgba(134, 147, 156, 0.4) 0%, rgba(98, 107, 113, 0.4) 50%), url("paris.jpg");
+  background-image: linear-gradient(-225deg, rgba(134, 147, 156, 0.4) 0%, rgba(98, 107, 113, 0.4) 50%), url("http://res.cloudinary.com/lmdn/image/upload/v1503585829/paris_wom0yv.jpg");
   background-size: cover;
   color: white;
 }
@@ -64,10 +71,10 @@
 .content-section-c {
   // border-top: 1px solid #e7e7e7;
   // border-bottom: 1px solid #e7e7e7;
-  padding: 120px 0;
+  // padding: 120px 0;
   height: 100vh;
   background-color: white;
-  background-image: linear-gradient(-225deg, rgba(134, 147, 156, 0.4) 0%, rgba(98, 107, 113, 0.4) 50%), url("paris6.jpg");
+  background-image: linear-gradient(-225deg, rgba(134, 147, 156, 0.4) 0%, rgba(98, 107, 113, 0.4) 50%), url("http://res.cloudinary.com/lmdn/image/upload/v1503586822/paris7_lzyjgq.jpg");
   background-size: cover;
   font-weight: bolder;
   color: white;
@@ -76,12 +83,12 @@
 .wrap_title{margin-bottom: 30px;}
 
 .tworow {
-  margin-top: 90px;
+  margin-top: 10em;
 }
 
 .lead {
   margin-bottom: 21px;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 200;
   line-height: 1.4;
 }
@@ -89,4 +96,33 @@
 .content-wrapper {
   min-height: 100vh;
   // margin-top: 70px;
+}
+
+@media (max-width: 720px) {
+  .content-section-b {
+      height: auto;
+      min-height: 100%;
+  }
+
+  .content-section-c {
+      height: auto;
+      min-height: 100%;
+  }
+
+  .head-title {
+    position: relative;
+    top: 8em;
+  }
+
+  .banner .banner-content {
+    margin: 0 10px;
+  }
+
+  .banner .button-down {
+    top: 4em;
+}
+
+  .tworow {
+    margin-top: 0px;
+  }
 }

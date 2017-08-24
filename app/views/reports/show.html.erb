@@ -1,76 +1,49 @@
  <div class="main-grid-todo">
   <div class="vertical-navbar-todo"></div>
-  <div class="city-name-container-todo">Toulouse</div>
+  <div class="city-name-container-todo"> <%= @city.name  %></div>
   <div class="filters-container-todo">Filters</div>
 
   <div class="cards-container-todo">
     <div class="ranking-choice">By Date or By Priority</div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
+
+
+    <% @reports.order(priority_id: :desc).each do |rep| %>
+        <div class="card-index-todo">
+          <% if rep.priority_id == 4 %>
+            <div class="priority-color-card urgent"></div>
+          <% elsif rep.priority_id == 3 %>
+            <div class="priority-color-card high"></div>
+          <% elsif rep.priority_id == 2 %>
+            <div class="priority-color-card normal"></div>
+          <% elsif rep.priority_id == 1 %>
+            <div class="priority-color-card low"></div>
+          <% end %>
+
+          <div class="degradation"> <%=rep.degradation.name %> </div>
+          <div class="status"> <%= rep.status.name %> </div>
+          <div class="furniture"> <%=rep.furniture.name %> </div>
+          <div class="creation-date"><%=rep.submit_date %></div>
+        </div>
+    <% end %>
+
   </div>
 
   <div class="card-show-grid-todo">
-    <div class="priority"> Dangerous </div>
-    <div class="degradation"> Degradation </div>
-    <div class="furniture"> Furnitures </div>
-    <div class="location"> 160 avenue de Ségur - 75034 Paris </div>
+    <div class="priority"> <%=@report.priority.name %> </div>
+    <div class="degradation"> <%=@report.degradation.name %> </div>
+    <div class="furniture"> <%=@report.furniture.name %> </div>
+    <div class="location"> <%=@report.address %> </div>
     <div class="description">Descritpion</div>
     <div class="picture">Picture</div>
     <div class="grid-dates-status">
       <div class="title">Created the</div>
-      <div class="creation-date">11/08/17</div>
+      <div class="creation-date"><%=@report.submit_date %></div>
       <div class="title">Status</div>
-      <div class="status">Pending</div>
+      <div class="status"><%=@report.status.name %></div>
       <div class="title">Resolution date</div>
-      <div class="resolution">None</div>
+      <div class="resolution"><%=@report.resolution_date %></div>
     </div>
-    <div class="messages">Messages</div>
+    <div class="messages"><%=@messages %></div>
     <div class="map">Map</div>
   </div>
 </div>

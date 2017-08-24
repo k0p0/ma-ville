@@ -7,7 +7,9 @@ class ReportsController < ApplicationController
   end
 
   def show
+    @reports = Report.all
     @message = Message.new
+    @city = City.new
   end
 
   def new

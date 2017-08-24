@@ -1,1 +1,128 @@
+.img-flex {
+  width: 50px;
+}
+
+.card {
+  color: black;
+}
+
+.img-avatar {
+  border-radius: 50%;
+  width: 100px;
+}
+
+// .row {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+// }
+
+.banner .button-down {
+  // margin-top: 300px;
+  position: relative;
+    top: 9em;
+}
+
+.head-title {
+    position: relative;
+    top: 8em;
+  }
+
+.content-section-c .button-down {
+  margin-top: 75px;
+}
+
+.button-down {
+  margin-top: 180px;
+}
+
+.button-down .img-down {
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+  &:hover {
+    -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+  }
+}
+
+.img-down {
+  width: 50px;
+}
+
+.content-section-c .button-down .img-down {
+  width: 60px;
+}
+
+.img-body {
+  width: 90px;
+}
+
+.content-section-b {
+  // border-top: 1px solid #e7e7e7;
+  // border-bottom: 1px solid #e7e7e7;
+  // padding: 120px 0;
+  height: 100vh;
+  background-color: white;
+  background-image: linear-gradient(-225deg, rgba(134, 147, 156, 0.4) 0%, rgba(98, 107, 113, 0.4) 50%), url("paris.jpg");
+  background-size: cover;
+  color: white;
+}
+
+.content-section-c {
+  // border-top: 1px solid #e7e7e7;
+  // border-bottom: 1px solid #e7e7e7;
+  // padding: 120px 0;
+  height: 100vh;
+  background-color: white;
+  background-image: linear-gradient(-225deg, rgba(134, 147, 156, 0.4) 0%, rgba(98, 107, 113, 0.4) 50%), url("paris6.jpg");
+  background-size: cover;
+  font-weight: bolder;
+  color: white;
+}
+
+.wrap_title{margin-bottom: 30px;}
+
+.tworow {
+  margin-top: 10em;
+}
+
+.lead {
+  margin-bottom: 21px;
+  font-size: 17px;
+  font-weight: 200;
+  line-height: 1.4;
+}
 // Specific CSS for your home-page
+.content-wrapper {
+  min-height: 100vh;
+  // margin-top: 70px;
+}
+
+@media (max-width: 720px) {
+  .content-section-b {
+      height: auto;
+      min-height: 100%;
+  }
+
+  .content-section-c {
+      height: auto;
+      min-height: 100%;
+  }
+
+  .head-title {
+    position: relative;
+    top: 8em;
+  }
+
+  .banner .banner-content {
+    margin: 0 10px;
+  }
+
+  .banner .button-down {
+    top: 4em;
+}
+
+  .tworow {
+    margin-top: 0px;
+  }
+}

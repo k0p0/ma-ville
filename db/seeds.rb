@@ -50,6 +50,7 @@ Degradation.create(name: "Sécurité")
 puts "all degradations are created"
 
 
+
 # puts "Destroy all cities"
 # City.destroy_all
 # puts "Start create cities"

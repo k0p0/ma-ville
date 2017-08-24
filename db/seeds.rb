@@ -48,3 +48,10 @@ Degradation.create(name: "Nuisance sonore")
 Degradation.create(name: "Sécurité")
 puts "all degradations are created"
 
+City.create(name: "Guran", zip_code: 31440, insee_code: 31235, population: 47,
+  density: 9, area: 5.3, region: "Midi-Pyrénées", department: "Haute-Garonne",
+  council_address: "Place de la Mairie", council_website: "Site non renseigné",
+  council_email: "commune-de-guran@orange.fr", council_phone: "05 61 88 59 77",
+  city_latitude: 42.895421056, city_longitude: 0.722774837437)
+
+

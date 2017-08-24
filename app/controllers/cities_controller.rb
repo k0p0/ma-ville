@@ -1,5 +1,6 @@
 class CitiesController < ApplicationController
     before_action :set_city, only: [:show, :update]
+    skip_before_action :authenticate_user!, only: [:show]
 
   def index
     @cities = City.all

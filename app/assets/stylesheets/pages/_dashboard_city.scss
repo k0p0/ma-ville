@@ -57,6 +57,9 @@
   padding: 5px 5px;
  }
 
+.dash-title{
+  margin: 0px;
+}
 /*
  * Dashboard
  */
@@ -111,6 +114,7 @@
   flex: 0 0 auto;
 }
 
+
 .rest-grid-dash-city{
  grid-row: 3 / span 1;
  grid-column: 2 / span 1;
@@ -124,6 +128,7 @@
  .map-dash-city{
   grid-row: 1 / span 2;
   grid-column: 1 / span 1;
+  padding: 20px;
   // border: 1px dashed red;
   }
 
@@ -132,6 +137,10 @@
   grid-column: 2 / span 1;
   // border: 1px dashed yellow;
   }
+
+ .padding-chart{
+  padding: 20px;
+ }
 
 }
 

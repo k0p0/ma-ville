@@ -17,7 +17,7 @@
       </nav>
     </div>
     <div class="navbar-dash-city">
-      <h2 class="text-center"><%= @city.name %></h2>
+      <h1 class="dash-title text-center"><%= @city.name %></h1>
     </div>
     <div class="stats-line-dash-city text-center">
       <ul class="list-unstyled stats-flex-dash-city">
@@ -31,56 +31,56 @@
         <% if @city.reports.size == 0 %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("total.png",height: 70, width: 70, border: 0) %> <br>
-          Aucun incident répertorié
+          <b><span style="color: black">Aucun incident répertorié</span></b>
         </li>
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("total.png",height: 70, width: 70, border: 0) %> <br>
-          Total: <%= pluralize @city.reports.size, "incident" %>
+          <b><span style="color: black">Total: <%= pluralize @city.reports.size, "incident" %></span></b>
         </li>
         <% end %>
         <% if @city.reports.where(status_id: 1).size == 0 %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("enattente.png",height: 70, width: 70, border: 0) %> <br>
-          Aucun incident en attente
+          <b><span style="color: red">Aucun incident en attente</span></b>
         </li>
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("enattente.png",height: 70, width: 70, border: 0) %> <br>
-          En attente: <%= pluralize @city.reports.where(status_id: 1).size, "incident" %>
+          <b><span style="color: red">En attente: <%= pluralize @city.reports.where(status_id: 1).size, "incident" %></span></b>
         </li>
         <% end %>
         <% if @city.reports.where(status_id: [2,4]).size == 0 %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("encours.png",height: 70, width: 70, border: 0) %> <br>
-          Aucun incident en cours de résolution
+          <b><span style="color: #FFED78">Aucun incident en cours de résolution</span></b>
         </li>
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("encours.png",height: 70, width: 70, border: 0) %> <br>
-          En cours: <%= pluralize @city.reports.where(status_id: [2,4]).size, "incident" %>
+          <b><span style="color: #FFED78">En cours: <%= pluralize @city.reports.where(status_id: [2,4]).size, "incident" %></span></b>
         </li>
         <% end %>
         <% if @city.reports.where(status_id: 3).size == 0 %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("schedule.png",height: 70, width: 70, border: 0) %> <br>
-          Aucun incident en cours de résolution
+          <b><span style="color: orange">Aucun incident en cours de résolution</span></b>
         </li>
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("schedule.png",height: 70, width: 70, border: 0) %> <br>
-          Intervention programmée: <%= pluralize @city.reports.where(status_id: 3).size, "incident" %>
+          <b><span style="color: orange">Intervention programmée: <%= pluralize @city.reports.where(status_id: 3).size, "incident" %></span></b>
         </li>
         <% end %>
         <% if @city.reports.where(status_id: 5).size == 0 %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("resolu.png",height: 70, width: 70, border: 0) %> <br>
-          Aucun incident résolu
+          <b><span style="color: green">Aucun incident résolu</span></b>
         </li>
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("resolu.png",height: 70, width: 70, border: 0) %> <br>
-          Résolu: <%= pluralize @city.reports.where(status_id: 5).size, "incident" %>
+          <b><span style="color: green">Résolu: <%= pluralize @city.reports.where(status_id: 5).size, "incident" %></span></b>
         </li>
         <% end %>
       </ul>
@@ -88,7 +88,7 @@
     <div class="rest-grid-dash-city">
       <div class="map-dash-city">
         <!-- GOOGLE MAP -->
-        <div id="map" style="width: 100%; height: 800px;"></div>
+        <div id="map" style="width: 100%; height: 800px; border-radius: 5px; "></div>
         <% content_for(:after_js) do %>
         <%= javascript_tag do %>
         $(document).ready(function() {
@@ -109,12 +109,21 @@
       </div>
       <!-- GOOGLE MAP END -->
       <div class="stats-col-dash-city">
-        <div id="chart1"></div>
-        <div id="chart2"></div>
+        <h4 class="text-center">Répartition par types d'incidents</h4>
+        <div class="padding-chart" id="chart1"></div>
+        <h4 class="text-center">Répartition par support</h4>
+        <div class= "padding-chart" id="chart2"></div>
         <% content_for(:after_js) do %>
-        <script> Chartkick.configure({language: "fr"}); </script>
-        <%= pie_chart Report.joins(:degradation).where(city: @city).group(:name).count, id: "chart1", label: "TOTO"  %>
-        <%= pie_chart Report.joins(:furniture).where(city: @city).group(:name).count, id: "chart2", label: "TOTO"  %>
+        <% if Report.joins(:degradation).where(city: @city).group(:name).count.blank? %>
+        <%= pie_chart [["Aucun incident déclaré", 100]], id: "chart1", donut: true, legend: "bottom", colors: ["#95E1D3"] %>
+        <% else %>
+        <%= pie_chart Report.joins(:degradation).where(city: @city).group(:name).count, id: "chart1", donut: true, legend: "bottom" %>
+        <% end %>
+        <% if Report.joins(:furniture).where(city: @city).group(:name).count.blank? %>
+        <%= pie_chart [["Aucun incident déclaré", 100]], id: "chart2", donut: true, legend: "bottom", colors: ["#F38181"] %>
+        <% else %>
+        <%= pie_chart Report.joins(:furniture).where(city: @city).group(:name).count, id: "chart2", donut: true, legend: "bottom" %> <!-- , adapter: "google" , adapter: "high-->
+        <% end %>
         <% end %>
       </div>
     </div>

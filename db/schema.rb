@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821132321) do
+ActiveRecord::Schema.define(version: 20170824090616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 20170821132321) do
     t.bigint "degradation_id"
     t.bigint "furniture_id"
     t.bigint "city_id"
-    t.bigint "priority_id"
-    t.bigint "status_id"
+    t.bigint "priority_id", default: 2
+    t.bigint "status_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_reports_on_city_id"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20170821132321) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "city_id"
+    t.bigint "city_id", default: 1
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

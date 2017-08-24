@@ -76,6 +76,6 @@ $(".previous").click(function(){
   });
 });
 
-$(".submit").click(function(){
+$(".soumettre").click(function(){
   return false;
 })

@@ -19,8 +19,10 @@ class ReportsController < ApplicationController
     @report.submit_date = Time.now
     @report.city = City.find_by(name: params[:report][:city])
     if @report.save
+      flash[:notice] = "Votre incident a bien été envoyé à la commune de #{@report.city.name}"
       redirect_to report_path(@report)
     else
+      flash[:alert] = "Erreur, saisir à nouveau"
       render :new
     end
   end

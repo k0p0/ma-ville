@@ -1,123 +1,102 @@
-$margin: 32px;
-  .welcome {
-    background-image: url(https://static.pexels.com/photos/280221/pexels-photo-280221.jpeg);
-    height: 46vh;
-    background-position: center;
+// $margin: 32px;
+//   .welcome {
+//     background-image: linear-gradient(-225deg, rgba(134, 147, 156, 0.4) 0%, rgba(98, 107, 113, 0.4) 50%), url(https://static.pexels.com/photos/280221/pexels-photo-280221.jpeg);
+//     height: 30vh;
+//     background-position: center;
 
-    h1{
-      padding-top: 15vh;
-      color: white;
-      margin-top: 0;
-      font-size: 100px;
-      font-weight: bolder;
-    }
-  }
+//     h1{
+//       padding-top: 10vh;
+//       color: white;
+//       margin-top: 0;
+//       font-size: 70px;
+//       font-weight: bolder;
+//     }
+//   }
 
-.stage {
-  position: relative;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-content: center;
-  align-items: center;
-  padding: $margin;
-  // min-height: calc(100vh - 80px);
-  &:hover > .tile {
-    opacity: 0.5;
-  }
-
-
-  .tile {
-    //subtract the sum of space-between
-    height: 215px;
-    position: relative;
-    flex: 1 1 calc(33.333% - 96px);
-    // padding: ($margin * 2) $margin;
-    margin: $margin / 2;
-    background: darken($light-gray, 75%);
-    cursor: pointer;
-    box-shadow: 5px 5px 0 0 transparentize(darken($light-gray, 75%), 0.75);
-    transform-origin: 50% 100% 0;
-    transition-property: transform box-shadow;
-    transition-duration: .5s;
-    transition-timing-function: cubic-bezier(.76,-0.35,.21,1.45);
-    &:hover {
-      opacity: 1;
-      transform: scale(1.1);
-      box-shadow: none;
-    }
-    > h1 {
-      font-weight: 300;
-      color: $light-gray;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    > h2 {
-      font-weight: 200;
-      color: $light-gray;
-      text-align: center;
-      padding-bottom: 20px;
-    }
-  }
+.city-info {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
-.tile {
-  &:after,
-  &::after {
-    content: '';
-    position: absolute;
-    top: .5em;
-    left: .5em;
-    height: calc(100% - .5em);
-    width: calc(100% - .5em);
-    pointer-events: none;
-    opacity: 0.15;
-    background-image: none;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+.council {
+  color: black;
+  background-color: $light-gray;
+}
+
+.cards-mini-index {
+   height: 39vh;
+   // max-height: 40vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  h3 {
+    margin-top: 10px;
   }
-  &.population {
-    background-color: darken(#E8CCBF, 12.5%);
-        &:after,
-    &::after {
-      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/911489/svg_.svg);
-      background-position: 50% 70%;
-      background-size: 230px;
+
+// * {
+//    font-size: 5px;
+// }
+  .card-mini-index-todo{
+    min-height: 80px;
+    max-height: 80px;
+    display: grid;
+    grid-template-columns: 10px 70% 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr ;
+    border: solid 0.3px $light-gray;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    margin: 7px 15px;
+    padding-right: 10px;
+
+    * {
+        margin: 3px 10px;
+        color: black;
     }
-  }
-  &.region {
-    background-color: darken(#E6B89C, 15%);
-    &:after,
-    &::after {
-      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/911489/svg_group.svg);
+
+    &:hover div {
+      color: white !important;
+      font-weight: bold !important;
+      border: none !important;
     }
-  }
-  &.department {
-    background-color: darken(#EAD2AC, 15%);
-        &:after,
-    &::after {
-      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/911489/svg_trend.svg);
-      background-size: 180px;
+
+    .priority-color-card{
+      grid-row: 1 / span 2;
+      grid-column: 1 / span 1;
+      width: 10px;
+      height: 78px;
+      border: 0;
+      border-top-right-radius: 1px;
+      border-bottom-right-radius: 1px;
+      margin: 0;
+      margin-bottom: 2px;
     }
-  }
-  &.zip_code {
-    background-color: darken(#9CAFB7, 15%);
-    &:after,
-    &::after {
+    .degradation {
+      grid-row: 1 / span 2;
+      grid-column: 2 / span 1;
+      font-weight: bold;
+      margin-top: 17px;
+      font-size: 12px;
     }
-  }
-   &.address {
-    background-color: darken(#4281A4, 15%);
-    &:after,
-    &::after {
-    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/911489/svg_trend.svg);
+    .furniture {
+      grid-row: 3 / span 2;
+      grid-column: 2 / span 1;
+      font-weight: bold;
+      font-size: 12px;
     }
-  }
-   &.phone {
-    background-color: darken(#E16036, 15%);
-    &:after,
-    &::after {
-    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/911489/svg_trend.svg);
+    .status {
+      grid-row: 3 / span 2;
+      grid-column: 3 / span 1;
+      text-align: right;
+      font-size: 10px;
+
+    }
+    .creation-date {
+      grid-row: 1 / span 2;
+      grid-column: 3 / span 1;
+      margin-top: 17px;
+      text-align: right;
+      font-size: 10px;
+
     }
   }
 }

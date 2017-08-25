@@ -7,7 +7,7 @@
           <%= link_to image_tag("dashboard.png", alt: "dashboard", height: 50, width: 50, border: 0), city_path %>
         </li>
         <li class="nav-item">
-          <%= link_to image_tag("todo.png", alt: "To do list", width: 50, height: 50, border: 0), city_path %>
+          <%= link_to image_tag("todo.png", alt: "To do list", width: 50, height: 50, border: 0), report_path %>
         </li>
         <li class="nav-item">
           <%= link_to image_tag("info.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>
@@ -33,7 +33,7 @@
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("total.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: black">Total: <%= pluralize @city.reports.size, "incident" %></span></b>
+          <b><span style="color: black">Total: <%= @city.reports.size %> <%= "incident".pluralize @city.reports.size %></span></b>
         </li>
         <% end %>
         <% if @city.reports.where(status_id: 1).size == 0 %>
@@ -44,7 +44,7 @@
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("enattente.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: red">En attente: <%= pluralize @city.reports.where(status_id: 1).size, "incident" %></span></b>
+          <b><span style="color: red">En attente: <%= @city.reports.where(status_id: 1).size %> <%= "incident".pluralize @city.reports.where(status_id: 1).size %> </span></b>
         </li>
         <% end %>
         <% if @city.reports.where(status_id: [2,4]).size == 0 %>
@@ -55,7 +55,7 @@
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("encours.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: #FFED78">En cours: <%= pluralize @city.reports.where(status_id: [2,4]).size, "incident" %></span></b>
+          <b><span style="color: #FFED78">En cours: <%= @city.reports.where(status_id: [2,4]).size %> <%= "incident".pluralize @city.reports.where(status_id: [2,4]).size %></span></b>
         </li>
         <% end %>
         <% if @city.reports.where(status_id: 3).size == 0 %>
@@ -66,7 +66,7 @@
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("schedule.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: orange">Intervention programmée: <%= pluralize @city.reports.where(status_id: 3).size, "incident" %></span></b>
+          <b><span style="color: orange">Intervention programmée: <%= @city.reports.where(status_id: 3).size %> <%= "incident".pluralize @city.reports.where(status_id: 3).size %></span></b>
         </li>
         <% end %>
         <% if @city.reports.where(status_id: 5).size == 0 %>
@@ -77,7 +77,7 @@
         <% else %>
         <li class="stats-flex-item-dash-city">
           <%= image_tag("resolu.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: green">Résolu: <%= pluralize @city.reports.where(status_id: 5).size, "incident" %></span></b>
+          <b><span style="color: green">Résolu: <%= @city.reports.where(status_id: 5).size %> <%= "incident".pluralize @city.reports.where(status_id: 5).size %></span></b>
         </li>
         <% end %>
       </ul>

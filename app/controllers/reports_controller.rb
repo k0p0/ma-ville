@@ -7,7 +7,16 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @message = Message.new
+    @reports = Report.all
+    @messages = Message.all
+    @city = City.new
+    @hash = Gmaps4rails.build_markers(@report) do |report, marker|
+      marker.lat report.report_latitude
+      marker.lng report.report_longitude
+    @status = Status.all
+    end
+    # raise
+
   end
 
   def new
@@ -16,6 +25,11 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
+    binding.pry
+    unless params[:report][:picture].blank?
+      @report.picture = params[:report][:picture]
+    end
+    binding.pry
     @report.submit_date = Time.now
     @report.city = City.find_by(name: params[:report][:city])
     if @report.save
@@ -28,6 +42,7 @@ class ReportsController < ApplicationController
   end
 
   def edit
+    @status = Status.all
   end
 
   def update
@@ -50,6 +65,8 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:resolution_date, :submit_date, :address, :report_latitude, :report_longitude, :picture, :description, :degradation_id, :furniture_id, :city_id, :priority_id, :status_id)
+    params.require(:report).permit(
+      :resolution_date, :submit_date, :address, :report_latitude, :report_longitude,
+      :description, :degradation_id, :furniture_id, :city_id, :priority_id, :status_id)
   end
 end

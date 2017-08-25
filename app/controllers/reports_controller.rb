@@ -25,11 +25,9 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
-    binding.pry
     unless params[:report][:picture].blank?
       @report.picture = params[:report][:picture]
     end
-    binding.pry
     @report.submit_date = Time.now
     @report.city = City.find_by(name: params[:report][:city])
     if @report.save

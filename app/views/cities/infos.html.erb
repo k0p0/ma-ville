@@ -26,18 +26,20 @@
   </div>
 </div> -->
 
-<div class="container">
+<div class="container city-info">
   <div class="row">
     <div class="col-xs-12 col-sm-4">
-      <div class="card council" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://static.pexels.com/photos/280221/pexels-photo-280221.jpeg');">
+      <div class="card council" style="background-color: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://static.pexels.com/photos/280221/pexels-photo-280221.jpeg');">
         <div class="card-description">
-          <h2>Infos Mairies</h2>
+          <h2>Infos Mairie:</h2>
           <p>Population: <%= @city.population %> habitants</p>
           <p>Région: <%= @city.region %></p>
           <p>Département: <%= @city.department %></p>
           <p>Code postal: <%= @city.zip_code %></p>
           <p>Adresse Mairie: <%= @city.council_address %></p>
           <p>Téléphone Mairie: <%= @city.council_phone %></p>
+          <p>E-mail Mairie: <%= @city.council_email%></p>
+          <p>Site Mairie: <%= @city.council_website %></p>
         </div>
       </div>
     </div>
@@ -67,24 +69,39 @@
     </div>
     <div class="col-xs-12 col-sm-4">
     <div class="card">
-      <div class="message">
-          <div class="message-name">
-          <% @city.reports.each do |report| %>
-            <p><%= report.submit_date %></p>
-          <% end %>
+      <div class="cards-mini-index">
+        <div id="sort-by-priority">
+        <h3 class="text-center">Les incidents à <%= @city.name %>:</h3>
+          <% @reports.order(submit_date: :desc).each do |rep| %>
+          <div class="card-mini-index-todo">
+            <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
+            <div class="degradation"> <%=rep.degradation.name %> </div>
+            <div class="creation-date"><%=rep.submit_date %></div>
+            <div class="furniture"> <%=rep.furniture.name %> </div>
+            <div class="status"> <%= rep.status.name %> </div>
           </div>
-          <div class="message-body">
-          <% @city.reports.each do |report| %>
-            <p><strong><%= report.address %></strong></p>
-            <p><%= report.description %></p>
-          <% end %>
-          </div>
-          <div class="message-status">
-            <% @city.reports.each do |report| %>
-            <p><%= report.status_id %></p>
-            <% end %>
-          </div>
-        </div>
+      <% end %>
+    </div>
+  </div>
     </div>
   </div>
 </div>
+
+
+<script>
+  // JS for the hover of the cards
+  const cards = document.querySelectorAll('.card-mini-index-todo');
+
+  function addColor() {
+    let classToAdd = this.childNodes[1].classList[1]
+    this.classList.add(classToAdd);
+  }
+
+  function removeColor() {
+    let classToRemove = this.childNodes[1].classList[1]
+    this.classList.remove(classToRemove);
+  }
+
+  cards.forEach(card => card.addEventListener('mouseenter', addColor));
+  cards.forEach(card => card.addEventListener('mouseleave', removeColor));
+</script>

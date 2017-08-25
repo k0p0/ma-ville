@@ -13,7 +13,90 @@
 //     }
 //   }
 
-  .council {
-    color: white;
+.city-info {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.council {
+  color: black;
+  background-color: $light-gray;
+}
+
+.cards-mini-index {
+   height: 39vh;
+   // max-height: 40vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  h3 {
+    margin-top: 10px;
   }
 
+// * {
+//    font-size: 5px;
+// }
+  .card-mini-index-todo{
+    min-height: 80px;
+    max-height: 80px;
+    display: grid;
+    grid-template-columns: 10px 70% 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr ;
+    border: solid 0.3px $light-gray;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    margin: 7px 15px;
+    padding-right: 10px;
+
+    * {
+        margin: 3px 10px;
+        color: black;
+    }
+
+    &:hover div {
+      color: white !important;
+      font-weight: bold !important;
+      border: none !important;
+    }
+
+    .priority-color-card{
+      grid-row: 1 / span 2;
+      grid-column: 1 / span 1;
+      width: 10px;
+      height: 78px;
+      border: 0;
+      border-top-right-radius: 1px;
+      border-bottom-right-radius: 1px;
+      margin: 0;
+      margin-bottom: 2px;
+    }
+    .degradation {
+      grid-row: 1 / span 2;
+      grid-column: 2 / span 1;
+      font-weight: bold;
+      margin-top: 17px;
+      font-size: 12px;
+    }
+    .furniture {
+      grid-row: 3 / span 2;
+      grid-column: 2 / span 1;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    .status {
+      grid-row: 3 / span 2;
+      grid-column: 3 / span 1;
+      text-align: right;
+      font-size: 10px;
+
+    }
+    .creation-date {
+      grid-row: 1 / span 2;
+      grid-column: 3 / span 1;
+      margin-top: 17px;
+      text-align: right;
+      font-size: 10px;
+
+    }
+  }
+}

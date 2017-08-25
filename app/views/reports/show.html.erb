@@ -1,76 +1,404 @@
  <div class="main-grid-todo">
-  <div class="vertical-navbar-todo"></div>
-  <div class="city-name-container-todo">Toulouse</div>
-  <div class="filters-container-todo">Filters</div>
+  <div class="vertical-navbar-todo">
+    <nav class="sidebar">
+      <ul class="nav list-group">
+        <li class="nav-item active">
+          <%#= link_to image_tag("dashboard.png", alt: "dashboard", height: 50, width: 50, border: 0), city_path %>
+        </li>
+        <li class="nav-item">
+          <%#= link_to image_tag("todo.png", alt: "To do list", width: 50, height: 50, border: 0), city_path %>
+        </li>
+        <li class="nav-item">
+          <%#= link_to image_tag("info.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>
+        </li>
+        <li class="nav-item">
+        <%#= link_to image_tag("archive.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>
+      </ul>
+    </nav>
+  </div>
 
   <div class="cards-container-todo">
-    <div class="ranking-choice">By Date or By Priority</div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
+    <div class="ranking-choice">
+      <div id="by-priority" class="selected">Priority</div>
+      <div id="by-date" class="unselected">Date</div>
     </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
+    <div id="sort-by-priority">
+      <% @reports.order(priority_id: :desc).each do |rep| %>
+        <%= link_to report_path(rep) do%>
+          <div class="card-index-todo">
+            <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
+            <div class="degradation"> <%=rep.degradation.name %> </div>
+            <div class="creation-date"><%=rep.submit_date %></div>
+            <div class="furniture"> <%=rep.furniture.name %> </div>
+            <div class="status"> <%= rep.status.name %> </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
-    </div>
-    <div class="card-index-todo">
-      <div class="degradation"> Degradation </div>
-      <div class="priority"> Dangerous </div>
-      <div class="furniture"> Furnitures </div>
-      <div class="creation-date">11/08/17</div>
+    <div id="sort-by-date" style="display: none;">
+      <% @reports.order(submit_date: :desc).each do |rep| %>
+        <%= link_to report_path(rep) do%>
+          <div class="card-index-todo">
+            <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
+            <div class="degradation"> <%=rep.degradation.name %> </div>
+            <div class="creation-date"><%=rep.submit_date %></div>
+            <div class="furniture"> <%=rep.furniture.name %> </div>
+            <div class="status"> <%= rep.status.name %> </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
   <div class="card-show-grid-todo">
-    <div class="priority"> Dangerous </div>
-    <div class="degradation"> Degradation </div>
-    <div class="furniture"> Furnitures </div>
-    <div class="location"> 160 avenue de Ségur - 75034 Paris </div>
-    <div class="description">Descritpion</div>
-    <div class="picture">Picture</div>
+    <div class="priority <%= "#{@report.priority.name}" + "-color" %>">
+      <%=@report.priority.name %>
+    </div>
+    <div class="degradation">
+      <div> Dégradation : </div>
+      <div class="text"> <%=@report.degradation.name %> </div>
+     </div>
+    <div class="furniture">
+     <div> Fourniture  : </div>
+     <div class="text"> <%=@report.furniture.name %> </div>
+    </div>
+    <div class="location">
+      <div> Addresse: </div>
+      <div class="text"> <%=@report.address %> </div>
+      </div>
+    <div class="description">
+      <div> Descritpion: </div>
+      <div class="text"> <%=@report.description %> </div>
+    </div>
+    <div class="picture-flexbox">
+      <%= image_tag "graffiti.jpg" %>
+    </div>
     <div class="grid-dates-status">
       <div class="title">Created the</div>
-      <div class="creation-date">11/08/17</div>
+      <div class="creation-date"><%=@report.submit_date %></div>
       <div class="title">Status</div>
-      <div class="status">Pending</div>
+      <div class="status">
+        <select class="styled-select semi-square" name="report[status_id]">
+          <% @status.each do |sta| %>
+            <% if sta.id == @report.status_id %>
+              <option selected="selected" value="<%= sta.id %>"><%= sta.name %></option>
+            <% else %>
+              <option value="<%= sta.id %>"><%= sta.name %></option>
+            <% end %>
+          <% end %>
+        </select>
+      </div>
       <div class="title">Resolution date</div>
-      <div class="resolution">None</div>
+      <div class="resolution"><%=@report.resolution_date %></div>
     </div>
-    <div class="messages">Messages</div>
-    <div class="map">Map</div>
+    <div class="messages"><%= @messages %></div>
+    <div id="map"></div>
+    <% content_for(:after_js) do %>
+      <script>
+        $(document).ready(function() {
+
+          var styles =
+          [
+              {
+                  "featureType": "all",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "administrative",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "administrative",
+                  "elementType": "labels.text",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      },
+                      {
+                          "saturation": "-100"
+                      },
+                      {
+                          "lightness": "65"
+                      },
+                      {
+                          "gamma": "0.25"
+                      },
+                      {
+                          "weight": "2.18"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "landscape",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      },
+                      {
+                          "color": "#f3f4f4"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "landscape",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "landscape.man_made",
+                  "elementType": "geometry",
+                  "stylers": [
+                      {
+                          "weight": 0.9
+                      },
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "poi",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "poi.attraction",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "poi.park",
+                  "elementType": "geometry.fill",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      },
+                      {
+                          "color": "#4b8f78"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "road",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      },
+                      {
+                          "color": "#ffffff"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "road",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "road.highway",
+                  "elementType": "geometry",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      },
+                      {
+                          "color": "#599b7e"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "road.highway",
+                  "elementType": "geometry.fill",
+                  "stylers": [
+                      {
+                          "color": "#27863f"
+                      },
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "road.highway",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      },
+                      {
+                          "hue": "#ff0000"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "road.arterial",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "color": "#599b7e"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "transit",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "water",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "visibility": "simplified"
+                      },
+                      {
+                          "color": "#89c2b0"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "water",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "water",
+                  "elementType": "labels.text",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "water",
+                  "elementType": "labels.icon",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              }
+          ]
+
+          ;
+          var handler = Gmaps.build('Google');
+          handler.buildMap({
+            provider: { styles: styles},
+            internal: { id: 'map' },
+            }, function() {
+            markers = handler.addMarkers(<%= raw @hash.to_json %>);
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            if (markers.length == 0) {
+              handler.getMap().setZoom(2);
+            } else if (markers.length == 1) {
+              handler.getMap().setZoom(14);
+            }
+          });
+        });
+      </script>
+      <script>
+      let date = new Date();
+      date.setDate(date.getDate()-1);
+
+      $(document).ready(function(){
+        $('.datepicker').datepicker({
+          language: 'fr',
+          autoclose: true,
+          orientation: "top right",
+          postion: "absolute",
+          startDate: date,
+          datesDisabled: <%= raw @reservedDates %>
+        });
+      });
+      </script>
+    <% end %>
   </div>
 </div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyD_RAkY8s72vyF-J80ulRyBuegrj_7yuN8"></script>
+
+<script>
+  // JS for the hover of the cards
+  const cards = document.querySelectorAll('.card-index-todo');
+
+  function addColor() {
+    let classToAdd = this.childNodes[1].classList[1]
+    this.classList.add(classToAdd);
+  }
+
+  function removeColor() {
+    let classToRemove = this.childNodes[1].classList[1]
+    this.classList.remove(classToRemove);
+  }
+
+  cards.forEach(card => card.addEventListener('mouseenter', addColor));
+  cards.forEach(card => card.addEventListener('mouseleave', removeColor));
+
+
+  // JS for the filter button
+  const byPriority = document.getElementById('sort-by-priority');
+  const byDate = document.getElementById('sort-by-date');
+  const btnByPriority = document.getElementById('by-priority');
+  const btnByDate = document.getElementById('by-date');
+
+  function sortByPriority() {
+    byDate.style.display = 'none';
+    byPriority.style.display = 'block';
+    btnByPriority.classList.add("selected")
+    btnByPriority.classList.remove("unselected")
+    btnByDate.classList.remove("selected")
+    btnByDate.classList.add("unselected")
+  }
+  function sortByDate() {
+    byPriority.style.display = 'none';
+    byDate.style.display = 'block';
+    btnByDate.classList.add("selected")
+    btnByDate.classList.remove("unselected")
+    btnByPriority.classList.remove("selected")
+    btnByPriority.classList.add("unselected")
+  }
+
+  btnByPriority.addEventListener('click', sortByPriority);
+  btnByDate.addEventListener('click', sortByDate);
+
+</script>
+

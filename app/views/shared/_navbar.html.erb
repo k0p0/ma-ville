@@ -9,9 +9,12 @@
     <% end %>
   <% end %>
 
-    <% if user_signed_in? %>
-   <h2 class="text-center"> <%= current_user.city.name.upcase %></h2>
+  <% if user_signed_in? %>
+    <% unless current_page?(root_path) %>
+      <h2 class="text-center"> <%= current_user.city.name.upcase %></h2>
+    <% end %>
   <% end %>
+
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
@@ -23,17 +26,20 @@
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "user.png", class:"settings", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% if current_page?(root_path) %>
+            <%= image_tag "user.png", class:"settings", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% else %>
+            <%= image_tag "userb.png", class:"settings", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: " Informations") %>
-              <% end %>
+              <%= link_to "Information", root_path %>
             </li>
             <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Se déconnecter") %>
-              <% end %>
+              <%= link_to "Ma mairie", city_path(current_user.city_id) %>
+            </li>
+            <li>
+              <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>
             </li>
           </ul>
         </div>

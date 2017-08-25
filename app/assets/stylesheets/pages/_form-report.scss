@@ -1,0 +1,144 @@
+/*form styles*/
+.form-page{
+  background-image:url(https://wallpaperscraft.com/image/street_city_evening_black_white_lights_buildings_hdr_25485_1920x1080.jpg);
+  height: 100vh;
+  background-position: center;
+  z-index: 2;
+}
+
+#msform {
+  width: 400px;
+  padding-top: 6em;
+  padding-right: 20px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+
+   fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+
+    /*stacking fieldsets above each other*/
+    position: relative;
+  }
+
+   fieldset:not(:first-of-type) {
+    display: none;
+  }
+
+  input, button, textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    color: black;
+    font-size: 13px;
+  }
+
+   .action-button {
+    width: 100px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+  }
+
+  .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 1px white;
+  }
+}
+/*Hide all except first fieldset*/
+/*inputs*/
+/*buttons*/
+/*headings*/
+.fs-title {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: black;
+  margin-bottom: 10px;
+  font-weight: bolder;
+}
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 15px;
+  color: grey;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+.form-control {
+  font-family: $body-font;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+/*progressbar*/
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  /*CSS counters to number the steps*/
+  counter-reset: step;
+  padding-left: 0;
+
+  li {
+    list-style-type: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    width: 33.33%;
+    float: left;
+    position: relative;
+  }
+  li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    line-height: 20px;
+    display: block;
+    font-size: 10px;
+    color: #333;
+    background: white;
+    border: solid 1px $green;
+    border-radius: 3px;
+    margin: 0 auto 5px auto;
+  }
+  // li:after {
+  //   content: '';
+  //   width: 100%;
+  //   height: 2px;
+  //   background: $green;
+  //   position: absolute;
+  //   left: -50%;
+  //   top: 9px;
+  //   z-index: 1; /*put it behind the numbers*/
+  // }
+  /*progressbar connectors*/
+  li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+  }
+  /*marking active/completed steps green*/
+  /*The number of the step and the connector before it = green*/
+  li.active:before,  #progressbar li.active:after{
+    background: $green;
+    color: white;
+  }
+}
+
+@media (max-width: 720px) {
+  #msform {
+    padding-top: 4em;
+  }
+}
+
+
+

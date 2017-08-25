@@ -10,7 +10,7 @@
     <meta property="og:image" content="http://res.cloudinary.com/lmdn/image/upload/v1503321964/og_ksayae.jpg" />
     <meta property="og:description" content="Le geste citoyen pour améliorer le quotidien." />
     <meta property="og:site_name" content="J'aime ma ville - Embelissez votre commune" />
-    <title>J'aime ma ville</title>
+    <title>J'aime ma ville - Embelissez votre commune</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -18,14 +18,26 @@
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
 
+
     <!-- FAVICON -->
     <%= render 'application/favicon' %>
 
   </head>
   <body>
+     <% flash.select { |type| %i(alert notice).include?(type) } .each do |type, message| %>
+    <div class="alert <%= bootstrap_class_for(type) %> fade in">
+      <button class="close" data-dismiss="alert">×</button>
+      <%= message %>
+    </div>
+  <% end %>
+
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
+    <div class="content-wrapper">
     <%= yield %>
+    </div>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
     <%= javascript_include_tag 'application' %>
     <%= cloudinary_js_config %>
     <%= yield(:after_js) %>

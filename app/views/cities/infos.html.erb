@@ -1,0 +1,29 @@
+<div class="welcome">
+<h1 class="text-center">Bienvenue à <%= @city.name %></h1>
+</div>
+<div class="stage">
+  <div class="tile population">
+    <h1>Population:</h1>
+    <h2><%= @city.population %> habitants</h2>
+  </div>
+    <div class="tile region">
+  <h1>Région:</h1>
+  <h2><%= @city.region %></h2>
+  </div>
+    <div class="tile department">
+  <h1>Département:</h1>
+  <h2><%= @city.department %></h2>
+  </div>
+  <div class="tile zip_code">
+    <h1>Code postal:</h1>
+    <h2><%= @city.zip_code %></h2>
+  </div>
+    <div class="tile address">
+  <h1>Adresse Mairie:</h1>
+  <h2><%= @city.council_address %></h2>
+  </div>
+    <div class="tile phone">
+  <h1>Téléphone Mairie:</h1>
+  <h2><%= @city.council_phone %></h2>
+  </div>
+</div>

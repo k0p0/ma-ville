@@ -1,2 +1,122 @@
-<h1>Reports#new</h1>
-<p>Find me in app/views/reports/new.html.erb</p>
+<!-- multistep form -->
+<div class="form-page">
+<form id="msform" method="post" action="/reports">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+
+  <ul id="progressbar">
+    <li class="active">Adresse</li>
+    <li>Type d'incident</li>
+    <li>Détails</li>
+  </ul>
+  <!-- fieldsets -->
+  <fieldset>
+    <h2 class="fs-title">Lieu de l'incident</h2>
+    <h3 class="fs-subtitle">Où êtes-vous ?</h3>
+    <input type="text" id="address" name="report[address]" placeholder="Indiquez votre adresse" />
+    <input type="text" id="postal_code" placeholder="CP" />
+    <input type="text" id="city" name="report[city]" placeholder="City" />
+    <input type="button" name="next" class="next action-button btn btn-success" value="Suivant" />
+  </fieldset>
+
+  <fieldset>
+    <h2 class="fs-title">Type d'incident</h2>
+    <h3 class="fs-subtitle">Quel incident ?</h3>
+    <select class="form-control select required" name="report[degradation_id]" id="report_degradation_id"><option value=""></option>
+    <% Degradation.all.each do |degration| %>
+    <option value="<%= degration.id %>"><%= degration.name %></option>
+    <% end %>
+    </select>
+    <h3 class="fs-subtitle">Sur quel mobilier ?</h3>
+    <select class="form-control select required" name="report[furniture_id]" id="report_furniture_id"><option value=""></option>
+    <% Furniture.all.each do |furniture| %>
+    <option value="<%= furniture.id %>"><%= furniture.name %></option>
+    <% end %>
+    </select>
+    <input type="button" name="previous" class="previous action-button btn btn-success" value="Précédent" />
+    <input type="button" name="next" class="next action-button btn btn-success" value="Suivant" />
+  </fieldset>
+
+  <fieldset>
+    <h2 class="fs-title">Informations complémentaires</h2>
+    <h3 class="fs-subtitle">Photo et description</h3>
+    <input class="file optional" type="file" name="report[picture]" id="report_picture">
+    <textarea class="form-control text optional" name="report[description]" id="report_description" placeholder="Description"></textarea>
+    <input type="button" name="previous" class="previous action-button btn btn-success" value="Précédent" />
+<!--     <input type="submit" name="submit" class="submit action-button btn btn-success" value="Submit" /> -->
+    <button class="submit action-button btn btn-success">Soumettre</button>
+  </fieldset>
+</form>
+</div>
+
+  <script>
+
+    var flat_address = document.getElementById('address');
+    if (flat_address) {
+      var autocomplete = new google.maps.places.Autocomplete(flat_address, { types: ['geocode'] });
+      google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+      google.maps.event.addDomListener(flat_address, 'keydown', function(e) {
+        if (e.keyCode == 13) {
+          e.preventDefault(); // Do not submit the form on Enter.
+        }
+      });
+    }
+
+    function onPlaceChanged() {
+      var place = this.getPlace();
+      var components = getAddressComponents(place);
+
+      var flatAddress = document.getElementById('address');
+      flatAddress.blur();
+      flatAddress.value = components.address;
+
+      document.getElementById('postal_code').value = components.zip_code;
+      document.getElementById('city').value = components.city;
+
+      if (components.country_code) {
+        var selector = '#flat_country option[value="' + components.country_code + '"]';
+        document.querySelector(selector).selected = true;
+      }
+    }
+
+    function getAddressComponents(place) {
+
+      if (window.console && typeof console.log === "function") {
+        console.log(place);
+      }
+
+      var street_number = null;
+      var route = null;
+      var zip_code = null;
+      var city = null;
+      var country_code = null;
+      for (var i in place.address_components) {
+        var component = place.address_components[i];
+        for (var j in component.types) {
+          var type = component.types[j];
+          if (type === 'street_number') {
+            street_number = component.long_name;
+          } else if (type === 'route') {
+            route = component.long_name;
+          } else if (type === 'postal_code') {
+            zip_code = component.long_name;
+          } else if (type === 'locality') {
+            city = component.long_name;
+          } else if (type === 'postal_town' && city === null) {
+            city = component.long_name;
+          } else if (type === 'country') {
+            country_code = component.short_name;
+          }
+        }
+      }
+
+      return {
+        address: street_number === null ? route : (street_number + ' ' + route + ', ' + city + ', ' + country_code),
+        zip_code: zip_code,
+        city: city,
+      };
+    }
+
+
+  </script>
+
+

@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   resources :priorities
   resources :statuses
 
-  resources :cities, only: [:index, :show, :edit, :update] do
-    resources :reports, only: [ :new, :create ]
+  resources :cities, only: [:index, :show, :edit, :update]  do
+    member do
+      get :infos
+    end
   end
+  
+  resources :reports, only: [:new, :create ]
 
   resources :reports, only: [:index, :show, :edit, :update, :destroy] do
     resources :messages, only: [:index, :new, :create]

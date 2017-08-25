@@ -1,6 +1,4 @@
-<div class="welcome">
-<h1 class="text-center">Bienvenue à <%= @city.name %></h1>
-</div>
+<!-- </div>
 <div class="stage">
   <div class="tile population">
     <h1>Population:</h1>
@@ -25,5 +23,68 @@
     <div class="tile phone">
   <h1>Téléphone Mairie:</h1>
   <h2><%= @city.council_phone %></h2>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <div class="card council" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://static.pexels.com/photos/280221/pexels-photo-280221.jpeg');">
+        <div class="card-description">
+          <h2>Infos Mairies</h2>
+          <p>Population: <%= @city.population %> habitants</p>
+          <p>Région: <%= @city.region %></p>
+          <p>Département: <%= @city.department %></p>
+          <p>Code postal: <%= @city.zip_code %></p>
+          <p>Adresse Mairie: <%= @city.council_address %></p>
+          <p>Téléphone Mairie: <%= @city.council_phone %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <div class="card">
+        <!-- GOOGLE MAP -->
+          <div id="map" style=" height: 40vh; border-radius: 5px; "></div>
+          <% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+          $(document).ready(function() {
+          var handler = Gmaps.build('Google');
+          handler.buildMap({ internal: { id: 'map' } }, function() {
+          markers = handler.addMarkers(<%= raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+          } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+          }
+          });
+          });
+          <% end %>
+        <% end %>
+      </div>
+      <!-- GOOGLE MAP END -->
+    </div>
+    <div class="col-xs-12 col-sm-4">
+    <div class="card">
+      <div class="message">
+          <div class="message-name">
+          <% @city.reports.each do |report| %>
+            <p><%= report.submit_date %></p>
+          <% end %>
+          </div>
+          <div class="message-body">
+          <% @city.reports.each do |report| %>
+            <p><strong><%= report.address %></strong></p>
+            <p><%= report.description %></p>
+          <% end %>
+          </div>
+          <div class="message-status">
+            <% @city.reports.each do |report| %>
+            <p><%= report.status_id %></p>
+            <% end %>
+          </div>
+        </div>
+    </div>
   </div>
 </div>

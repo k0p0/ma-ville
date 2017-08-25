@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824090616) do
+ActiveRecord::Schema.define(version: 20170825141849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 20170824090616) do
     t.bigint "degradation_id"
     t.bigint "furniture_id"
     t.bigint "city_id"
-    t.bigint "priority_id", default: 2
-    t.bigint "status_id", default: 1
+    t.bigint "priority_id"
+    t.bigint "status_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_reports_on_city_id"

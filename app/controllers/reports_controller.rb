@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
-  before_action :set_default, only: [:create, :update]
+  # before_action :set_default, only: [:create, :update]
   skip_before_action :authenticate_user!, only: [:new, :create, :show]
 
   def index
@@ -26,6 +26,10 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
+    @status = Status.all
+    @priority = Priority.all
+    @report.status_id = @status.where(name: "En attente de traitement").ids[0]
+    @report.priority_id = @priority.where(name: "Normale").ids[0]
     unless params[:report][:picture].blank?
       @report.picture = params[:report][:picture]
     end

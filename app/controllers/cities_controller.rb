@@ -47,6 +47,7 @@ class CitiesController < ApplicationController
   end
 
   def infos
+    show
   end
 
   private

@@ -26,10 +26,13 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
+
+    # A REVOIR
     @status = Status.all
     @priority = Priority.all
     @report.status_id = @status.where(name: "En attente de traitement").ids[0]
     @report.priority_id = @priority.where(name: "Normale").ids[0]
+
     unless params[:report][:picture].blank?
       @report.picture = params[:report][:picture]
     end

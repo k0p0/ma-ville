@@ -15,6 +15,10 @@
   height: 40px;
 }
 
+.settings {
+  height: 40px;
+}
+
 /* User Avatar */
 .navbar-wagon .avatar {
   height: 35px;
@@ -90,5 +94,11 @@
   .navbar-wagon-link {
     color: white;
     font-weight: bold;
+  }
+}
+
+@media (max-width: 720px) {
+  .logo-centered {
+    margin-left: 45%;
   }
 }

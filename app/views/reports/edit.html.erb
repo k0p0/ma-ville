@@ -1,2 +1,9 @@
-<h1>Reports#edit</h1>
-<p>Find me in app/views/reports/edit.html.erb</p>
+<form>
+  <select name="report[status_id]">
+    <% @status.each do |sta| %>
+      <option value="<%= sta.id %>"><%= sta.name %></option>
+    <% end %>
+  </select>
+<!--   <input type="status_id">
+ -->  <input type="submit" value="Save">
+</form>

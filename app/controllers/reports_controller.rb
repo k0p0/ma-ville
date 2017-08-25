@@ -33,6 +33,7 @@ class ReportsController < ApplicationController
   end
 
   def edit
+    @status = Status.all
   end
 
   def update

@@ -3,9 +3,15 @@
   <div class="flex-map-box">
   <div class="map-flex-item-dash-city">
   <p><%= report.degradation.name %></p>
-   <p> <%= report.furniture.name %></p>
-  <p><%= report.priority.name %></p>
-  <p><%= l(report.submit_date, format: '%d %B %Y')%></p>
+  <p> <%= report.furniture.name %></p>
+  <% case report.priority_id %>
+  <% when 1 then pcolor = $faible %>
+  <% when 2 then pcolor = $normale %>
+  <% when 3 then pcolor = $importante %>
+  <% when 4 then pcolor = $urgente %>
+  <% end %>
+ <p>Priorité: <span style="color:<%= pcolor %>"> <%= report.priority.name %></span></p>
+  <p><%= l(report.submit_date, format: '%d %B %Y', :locale => 'fr')%></p>
   <%= link_to "Details", report_path(report), target: :blank, class: "btn btn-small" %>
   </div>
   <div class="map-flex-item-dash-city">

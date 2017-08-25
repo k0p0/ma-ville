@@ -9,7 +9,9 @@
     <% end %>
   <% end %>
 
+    <% if user_signed_in? %>
    <h2 class="text-center"> <%= current_user.city.name.upcase %></h2>
+  <% end %>
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 

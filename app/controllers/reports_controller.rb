@@ -7,7 +7,16 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @message = Message.new
+    @reports = Report.all
+    @messages = Message.all
+    @city = City.new
+    @hash = Gmaps4rails.build_markers(@report) do |report, marker|
+      marker.lat report.report_latitude
+      marker.lng report.report_longitude
+    @status = Status.all
+    end
+    # raise
+
   end
 
   def new
@@ -28,6 +37,7 @@ class ReportsController < ApplicationController
   end
 
   def edit
+    @status = Status.all
   end
 
   def update

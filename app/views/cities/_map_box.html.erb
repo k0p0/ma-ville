@@ -1,0 +1,17 @@
+<div class="map_box">
+  <h5><strong><%= report.address %></strong></h5>
+  <div class="flex-map-box">
+  <div class="map-flex-item-dash-city">
+  <p><%= report.degradation.name %></p>
+   <p> <%= report.furniture.name %></p>
+  <p><%= report.priority.name %></p>
+  <p><%= l(report.submit_date, format: '%d %B %Y')%></p>
+  <%= link_to "Details", report_path(report), target: :blank, class: "btn btn-small" %>
+  </div>
+  <div class="map-flex-item-dash-city">
+    <% unless report.picture.nil? %>
+    <%= cl_image_tag report.picture.path, width: 180, height: 150, crop: :fill  %>
+    <% end %>
+  </div>
+  </div>
+</div>

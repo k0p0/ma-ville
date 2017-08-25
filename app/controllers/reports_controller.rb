@@ -34,9 +34,11 @@ class ReportsController < ApplicationController
       flash[:notice] = "Votre incident a bien été envoyé à la commune de #{@report.city.name}"
       redirect_to infos_city_path(@report.city_id)
     else
+      puts @report.errors.full_messages.join(",")
       flash[:alert] = "Erreur, saisir à nouveau"
       render :new
     end
+
   end
 
   def edit

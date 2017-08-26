@@ -19,8 +19,8 @@
 
   <div class="cards-container-todo">
     <div class="ranking-choice">
-      <div id="by-priority" class="selected">Priority</div>
-      <div id="by-date" class="unselected">Date</div>
+      <div id="by-priority" class="selected">PRIORITÉ</div>
+      <div id="by-date" class="unselected">DATE</div>
     </div>
     <div id="sort-by-priority">
       <% @reports.order(priority_id: :desc).each do |rep| %>
@@ -71,37 +71,49 @@
       <div class="status-btn attente">
         <%= simple_form_for @report do |f| %>
           <%#= f.input :status %>
-          <%= f.button :submit, "EN ATTENTE", class: "unselected-btn" %>
+          <%= f.button :button, class: "unselected-btn btn-style" do %>
+            EN ATTENTE
+          <% end %>
         <% end %>
       </div>
       <div class="status-btn commande-cours">
         <%= simple_form_for @report do |f| %>
           <%#= f.input :status %>
-          <%= f.button :submit, "COMMANDE EN \n COURS", class: "unselected-btn" %>
+          <%= f.button :button, class: "unselected-btn btn-style" do %>
+            COMMANDE EN <br> COURS
+          <% end %>
         <% end %>
       </div>
       <div class="status-btn intervention-pgm">
         <%= simple_form_for @report do |f| %>
           <%#= f.input :status %>
-          <%= f.button :submit, "INTERVENTION \n PROGRAMMÉE", class: "unselected-btn" %>
+          <%= f.button :button, class: "selected-btn btn-style" do %>
+            INTERVENTION <br> PROGRAMMÉE
+          <% end %>
         <% end %>
       </div>
       <div class="status-btn intervention-cours">
         <%= simple_form_for @report do |f| %>
           <%#= f.input :status %>
-          <%= f.button :submit, "INTERVENTION \n EN COURS", class: "unselected-btn" %>
+          <%= f.button :button, class: "unselected-btn btn-style" do %>
+            INTERVENTION <br> EN COURS
+          <% end %>
         <% end %>
       </div>
       <div class="status-btn resolu">
         <%= simple_form_for @report do |f| %>
           <%#= f.input :status %>
-          <%= f.button :submit, "RÉSOLU", class: "unselected-btn" %>
+          <%= f.button :button, class: "unselected-btn btn-style" do %>
+            RÉSOLU
+          <% end %>
         <% end %>
       </div>
       <div class="status-btn annule">
         <%= simple_form_for @report do |f| %>
           <%#= f.input :status %>
-          <%= f.button :submit, "ANNULÉ", class: "unselected-btn" %>
+          <%= f.button :button, class: "unselected-btn btn-style" do %>
+            ANNULÉ
+          <% end %>
         <% end %>
       </div>
     </div>

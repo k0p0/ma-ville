@@ -4,6 +4,10 @@
   // width: 100%;
   grid-template-columns: 80px 1fr 65% ;
   grid-template-rows: 50px 1fr ;
+  background-color: rgba(0, 0, 0, 0.05);
+  // AUTRE CHOIX DE BACKGROUND:
+  // background-color: rgba(8, 160, 69, 0.03);
+
 }
 
 .filters-container-todo, .card-index-todo, .cards-container-todo, .card-show-grid-todo, .grid-dates-status, .messages{
@@ -22,6 +26,7 @@
   grid-column: 1 / span 1;
   border-right: solid 0.3px $light-gray;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  background-color: white;
 }
 
 .cards-container-todo {
@@ -31,6 +36,7 @@
   overflow: scroll;
   display: flex;
   flex-direction: column;
+  background-color: white;
 
 
   .ranking-choice {
@@ -52,12 +58,13 @@
       opacity: 1;
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;
-      font-weight: bold;
+      padding-top: 2px;
+      font-size: 10px;
 
       &.unselected{
-        padding-top: 2px;
+        font-weight: lighter;
         &:hover {
-          opacity: 0.6;
+          opacity: 0.8;
           color: $green
         }
       }
@@ -66,7 +73,9 @@
         box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.3);
         background-color: $green;
         color: white;
-        font-size: 12px;
+        opacity: 0.8;
+
+
       }
     }
 
@@ -76,12 +85,14 @@
       opacity: 1;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
-      font-weight: bold;
+      padding-top: 2px;
+      font-size: 10px;
+
 
       &.unselected{
-        padding-top: 2px;
+        font-weight: lighter;
         &:hover {
-          opacity: 0.6;
+          opacity: 0.8;
           color: $green
         }
       }
@@ -89,7 +100,8 @@
         box-shadow: -2px 1px 3px rgba(0, 0, 0, 0.3);
         background-color: $green;
         color: white;
-        font-size: 12px;
+        opacity: 0.8;
+
       }
     }
   }
@@ -156,6 +168,7 @@
   grid-row: 1 / span 2;
   grid-column: 3 / span 1;
   padding-right: 15px;
+  background-color: white;
 
 
   display: grid;
@@ -271,19 +284,28 @@
         width: 15vh;
 
       }
-      .selected-btn {
-        max-width: 50px;
+      .btn-style {
+        padding: 0;
+        width: 15vh;
+        font-size: 9px;
         height: 8vh;
+        border-radius: 4px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      }
+      .selected-btn {
+        opacity: 0.8;
+        background-color: $green;
+        color: white;
       }
 
       .unselected-btn {
-        padding: 0;
-        width: 15vh;
-        font-size: 10px;
-        height: 8vh;
+        opacity: 1;
+        font-weight: lighter;
         &:hover {
           color: $green;
-          font-weight: bold;
+          font-weight: normal;
+          background-color: white;
+          opacity: 0.6;
         }
       }
       .attente {
@@ -374,26 +396,28 @@
     border-bottom: solid 0.6px $light-gray;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     color: $real-gray;
+    height: 16px;
   }
   .card-message-todo {
     border-bottom: solid 0.3px $light-gray;
     display: grid;
     grid-template-columns: 80% 1fr;
     grid-template-rows: 1fr ;
-    margin: 10px;
+    margin: -3px 10px 12px 10px;
     padding: 5px;
-    margin-top: 0px;
 
     .message-content{
       grid-row: 1 / span 1;
       grid-column: 1 / span 1;
+      font-weight: lighter;
     }
     .message-date{
       grid-row: 1 / span 1;
       grid-column: 2 / span 1;
       text-align: right;
       color: $real-gray;
-
+      font-weight: lighter;
+      font-size: 9px;
     }
   }
   .form-add-a-message{
@@ -401,6 +425,17 @@
     bottom: 0 !important;
     border-top: solid 0.6px $light-gray;
     text-align: center;
+    form {
+        padding-left: 5px;
+      input {
+        margin-left: 10px;
+        width: 204px;
+        &:focus {
+          outline:none;
+        }
+      }
+    }
+
   }
 }
 

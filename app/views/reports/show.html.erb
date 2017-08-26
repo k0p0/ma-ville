@@ -3,16 +3,16 @@
     <nav class="sidebar">
       <ul class="nav list-group">
         <li class="nav-item active">
-          <%#= link_to image_tag("dashboard.png", alt: "dashboard", height: 50, width: 50, border: 0), city_path %>
+          <%= link_to image_tag("dashboard.png", alt: "dashboard", height: 50, width: 50, border: 0), city_path %>
         </li>
         <li class="nav-item">
-          <%#= link_to image_tag("todo.png", alt: "To do list", width: 50, height: 50, border: 0), city_path %>
+          <%= link_to image_tag("todo.png", alt: "To do list", width: 50, height: 50, border: 0), city_path %>
         </li>
         <li class="nav-item">
-          <%#= link_to image_tag("info.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>
+          <%= link_to image_tag("info.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>
         </li>
         <li class="nav-item">
-        <%#= link_to image_tag("archive.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>
+        <%= link_to image_tag("archive.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>
       </ul>
     </nav>
   </div>
@@ -51,271 +51,89 @@
   </div>
 
   <div class="card-show-grid-todo">
-    <div class="priority <%= "#{@report.priority.name}" + "-color" %>">
+    <div class="vertical-color-line <%= "#{@report.priority.name}" + "-color" %>"></div>
+    <div class="priority-text text-form">Priorité :</div>
+    <div class="priority content-form-important <%= "#{@report.priority.name}" + "-text-color" %>">
       <%=@report.priority.name %>
     </div>
-    <div class="degradation">
-      <div> Dégradation : </div>
-      <div class="text"> <%=@report.degradation.name %> </div>
-     </div>
-    <div class="furniture">
-     <div> Fourniture  : </div>
-     <div class="text"> <%=@report.furniture.name %> </div>
-    </div>
-    <div class="location">
-      <div> Addresse: </div>
-      <div class="text"> <%=@report.address %> </div>
+    <div class="creation-date-text text-form">Déclaré le : </div>
+    <div class="creation-date content-form-important"><%=@report.submit_date %></div>
+    <div class="degradation-text text-form">Dégradation :</div>
+    <div class="degradation content-form-important"> <%=@report.degradation.name %></div>
+    <div class="furniture-text text-form">Fourniture :</div>
+    <div class="furniture content-form-important"> <%=@report.furniture.name %></div>
+    <div class="location-text text-form">Addresse :</div>
+    <div class="location content-form"> <%=@report.address %></div>
+    <div class="description-text text-form">Descritpion :</div>
+    <div class="description content-form"> <%=@report.description %></div>
+    <div class="cta-box">
+      <div class="status-text text-form"> Slectionnez le status en cours :</div>
+      <div class="status-btn attente">
+        <%= simple_form_for @report do |f| %>
+          <%#= f.input :status %>
+          <%= f.button :submit, "EN ATTENTE", class: "unselected-btn" %>
+        <% end %>
       </div>
-    <div class="description">
-      <div> Descritpion: </div>
-      <div class="text"> <%=@report.description %> </div>
+      <div class="status-btn commande-cours">
+        <%= simple_form_for @report do |f| %>
+          <%#= f.input :status %>
+          <%= f.button :submit, "COMMANDE EN \n COURS", class: "unselected-btn" %>
+        <% end %>
+      </div>
+      <div class="status-btn intervention-pgm">
+        <%= simple_form_for @report do |f| %>
+          <%#= f.input :status %>
+          <%= f.button :submit, "INTERVENTION \n PROGRAMMÉE", class: "unselected-btn" %>
+        <% end %>
+      </div>
+      <div class="status-btn intervention-cours">
+        <%= simple_form_for @report do |f| %>
+          <%#= f.input :status %>
+          <%= f.button :submit, "INTERVENTION \n EN COURS", class: "unselected-btn" %>
+        <% end %>
+      </div>
+      <div class="status-btn resolu">
+        <%= simple_form_for @report do |f| %>
+          <%#= f.input :status %>
+          <%= f.button :submit, "RÉSOLU", class: "unselected-btn" %>
+        <% end %>
+      </div>
+      <div class="status-btn annule">
+        <%= simple_form_for @report do |f| %>
+          <%#= f.input :status %>
+          <%= f.button :submit, "ANNULÉ", class: "unselected-btn" %>
+        <% end %>
+      </div>
+    </div>
+     <!--  <div class="title">Resolution date</div> -->
+     <!-- <div class="resolution"><%#=@report.resolution_date %></div>-->
+    <div class="messages">
+      <div class="list-of-messages">
+      <div class="card-message-title"> Ajoutez vos notes :</div>
+        <% @report.messages.order(submit_message_date: :desc).each do |mes| %>
+            <div class="card-message-todo">
+              <div class="message-content"> <%=mes.note %> </div>
+              <div class="message-date"><%=mes.submit_message_date %></div>
+            </div>
+        <% end %>
+      </div>
+      <div class="form-add-a-message">
+        <form action="">
+            <input type="text" name="new-message">
+            <input type="submit" value="Add">
+        </form>
+      </div>
     </div>
     <div class="picture-flexbox">
       <%= image_tag "graffiti.jpg" %>
     </div>
-    <div class="grid-dates-status">
-      <div class="title">Created the</div>
-      <div class="creation-date"><%=@report.submit_date %></div>
-      <div class="title">Status</div>
-      <div class="status">
-        <select class="styled-select semi-square" name="report[status_id]">
-          <% @status.each do |sta| %>
-            <% if sta.id == @report.status_id %>
-              <option selected="selected" value="<%= sta.id %>"><%= sta.name %></option>
-            <% else %>
-              <option value="<%= sta.id %>"><%= sta.name %></option>
-            <% end %>
-          <% end %>
-        </select>
-      </div>
-      <div class="title">Resolution date</div>
-      <div class="resolution"><%=@report.resolution_date %></div>
-    </div>
-    <div class="messages"><%= @messages %></div>
     <div id="map"></div>
     <% content_for(:after_js) do %>
       <script>
         $(document).ready(function() {
 
           var styles =
-          [
-              {
-                  "featureType": "all",
-                  "elementType": "labels",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "administrative",
-                  "elementType": "all",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "administrative",
-                  "elementType": "labels.text",
-                  "stylers": [
-                      {
-                          "visibility": "on"
-                      },
-                      {
-                          "saturation": "-100"
-                      },
-                      {
-                          "lightness": "65"
-                      },
-                      {
-                          "gamma": "0.25"
-                      },
-                      {
-                          "weight": "2.18"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "landscape",
-                  "elementType": "all",
-                  "stylers": [
-                      {
-                          "visibility": "on"
-                      },
-                      {
-                          "color": "#f3f4f4"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "landscape",
-                  "elementType": "labels",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "landscape.man_made",
-                  "elementType": "geometry",
-                  "stylers": [
-                      {
-                          "weight": 0.9
-                      },
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "poi",
-                  "elementType": "all",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "poi.attraction",
-                  "elementType": "all",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "poi.park",
-                  "elementType": "geometry.fill",
-                  "stylers": [
-                      {
-                          "visibility": "on"
-                      },
-                      {
-                          "color": "#4b8f78"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road",
-                  "elementType": "all",
-                  "stylers": [
-                      {
-                          "visibility": "on"
-                      },
-                      {
-                          "color": "#ffffff"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road",
-                  "elementType": "labels",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road.highway",
-                  "elementType": "geometry",
-                  "stylers": [
-                      {
-                          "visibility": "on"
-                      },
-                      {
-                          "color": "#599b7e"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road.highway",
-                  "elementType": "geometry.fill",
-                  "stylers": [
-                      {
-                          "color": "#27863f"
-                      },
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road.highway",
-                  "elementType": "labels",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      },
-                      {
-                          "hue": "#ff0000"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road.arterial",
-                  "elementType": "all",
-                  "stylers": [
-                      {
-                          "color": "#599b7e"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "transit",
-                  "elementType": "all",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "water",
-                  "elementType": "all",
-                  "stylers": [
-                      {
-                          "visibility": "simplified"
-                      },
-                      {
-                          "color": "#89c2b0"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "water",
-                  "elementType": "labels",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "water",
-                  "elementType": "labels.text",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "water",
-                  "elementType": "labels.icon",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              }
-          ]
+          [ ]
 
           ;
           var handler = Gmaps.build('Google');
@@ -353,8 +171,7 @@
   </div>
 </div>
 
-
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyD_RAkY8s72vyF-J80ulRyBuegrj_7yuN8"></script>
+<%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
 
 <script>
   // JS for the hover of the cards
@@ -373,6 +190,7 @@
   cards.forEach(card => card.addEventListener('mouseenter', addColor));
   cards.forEach(card => card.addEventListener('mouseleave', removeColor));
 
+  // JS for the CTA in the show of the card
 
   // JS for the filter button
   const byPriority = document.getElementById('sort-by-priority');

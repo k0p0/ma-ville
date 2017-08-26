@@ -17,71 +17,25 @@
       </nav>
     </div>
     <div class="stats-line-dash-city text-center">
-      <ul class="list-unstyled stats-flex-dash-city">
-        <!--
-        id: 1, name: "En attente de traitement"
-        id: 2, name: "Commande en cours"
-        id: 3, name: "Intervention programmée"
-        id: 4, name: "Intervention en cours"
-        id: 5, name: "Résolu"
-        id: 6, name: "Annulé" -->
-        <% if @city.reports.size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("total.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: black">Aucun incident répertorié</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("total.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: black">Total: <%= @city.reports.size %> <%= "incident".pluralize @city.reports.size %></span></b>
-        </li>
-        <% end %>
-        <% if @city.reports.where(status_id: 1).size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("enattente.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: red">Aucun incident en attente</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("enattente.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: red">En attente: <%= @city.reports.where(status_id: 1).size %> <%= "incident".pluralize @city.reports.where(status_id: 1).size %> </span></b>
-        </li>
-        <% end %>
-        <% if @city.reports.where(status_id: [2,4]).size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("encours.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: #FFED78">Aucun incident en cours de résolution</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("encours.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: #FFED78">En cours: <%= @city.reports.where(status_id: [2,4]).size %> <%= "incident".pluralize @city.reports.where(status_id: [2,4]).size %></span></b>
-        </li>
-        <% end %>
-        <% if @city.reports.where(status_id: 3).size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("schedule.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: orange">Aucun incident en cours de résolution</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("schedule.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: orange">Intervention programmée: <%= @city.reports.where(status_id: 3).size %> <%= "incident".pluralize @city.reports.where(status_id: 3).size %></span></b>
-        </li>
-        <% end %>
-        <% if @city.reports.where(status_id: 5).size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("resolu.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: green">Aucun incident résolu</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("resolu.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: green">Résolu: <%= @city.reports.where(status_id: 5).size %> <%= "incident".pluralize @city.reports.where(status_id: 5).size %></span></b>
-        </li>
-        <% end %>
-      </ul>
-    </div>
+
+      <table>
+        <tr>
+          <td>Total incidents déclarés</td>
+          <td>En attente de traitement</td>
+          <td>En cours de résolution</td>
+          <td>Intervention programée</td>
+          <td>Total incidents résolus</td>
+        </tr>
+        <tr>
+          <td><%= @city.reports.size %> </td>
+          <td><%= @attente %></td>
+          <td><%= @cours %></td>
+          <td><%= @prog %></td>
+          <td><%= @resolu %></td>
+        </tr>
+      </table>
+
+   </div>
     <div class="rest-grid-dash-city">
       <div class="map-dash-city">
         <!-- GOOGLE MAP -->

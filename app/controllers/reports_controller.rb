@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
+  # before_action :set_default, only: [:create, :update]
   skip_before_action :authenticate_user!, only: [:new, :create, :show]
 
   def index
@@ -24,15 +25,27 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
+
+    # A REVOIR
+    @status = Status.all
+    @priority = Priority.all
+    @report.status_id = @status.where(name: "En attente de traitement").ids[0]
+    @report.priority_id = @priority.where(name: "Normale").ids[0]
+
+    unless params[:report][:picture].blank?
+      @report.picture = params[:report][:picture]
+    end
     @report.submit_date = Time.now
     @report.city = City.find_by(name: params[:report][:city])
     if @report.save
       flash[:notice] = "Votre incident a bien été envoyé à la commune de #{@report.city.name}"
       redirect_to infos_city_path(@report.city_id)
     else
+      puts @report.errors.full_messages.join(",")
       flash[:alert] = "Erreur, saisir à nouveau"
       render :new
     end
+
   end
 
   def edit
@@ -57,7 +70,17 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
   end
 
+  def set_default
+    @report = Report.new
+    @status = Status.all
+    @priority = Priority.all
+    @report.status_id = @status.where(name: "En attente de traitement").ids[0]
+    @report.priority_id = @priority.where(name: "Normale").ids[0]
+  end
+
   def report_params
-    params.require(:report).permit(:resolution_date, :submit_date, :address, :report_latitude, :report_longitude, :picture, :description, :degradation_id, :furniture_id, :city_id, :priority_id, :status_id)
+    params.require(:report).permit(
+      :resolution_date, :submit_date, :address, :report_latitude, :report_longitude,
+      :description, :degradation_id, :furniture_id, :city_id, :priority_id, :status_id)
   end
 end

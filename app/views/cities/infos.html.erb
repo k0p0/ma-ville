@@ -1,6 +1,4 @@
-<div class="welcome">
-<h1 class="text-center">Bienvenue à <%= @city.name %></h1>
-</div>
+<!-- </div>
 <div class="stage">
   <div class="tile population">
     <h1>Population:</h1>
@@ -26,4 +24,84 @@
   <h1>Téléphone Mairie:</h1>
   <h2><%= @city.council_phone %></h2>
   </div>
+</div> -->
+
+<div class="container city-info">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <div class="card council">
+        <div class="card-description">
+          <h2>Infos Mairie:</h2>
+          <p>Population: <%= @city.population %> habitants</p>
+          <p>Région: <%= @city.region %></p>
+          <p>Département: <%= @city.department %></p>
+          <p>Code postal: <%= @city.zip_code %></p>
+          <p>Adresse Mairie: <%= @city.council_address %></p>
+          <p>Téléphone Mairie: <%= @city.council_phone %></p>
+          <p>E-mail Mairie: <%= @city.council_email%></p>
+          <p>Site Mairie: <%= @city.council_website %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <div class="card">
+        <!-- GOOGLE MAP -->
+          <div id="map" style=" height: 40vh; border-radius: 5px; "></div>
+          <% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+          $(document).ready(function() {
+          var handler = Gmaps.build('Google');
+          handler.buildMap({ internal: { id: 'map' } }, function() {
+          markers = handler.addMarkers(<%= raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+          } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+          }
+          });
+          });
+          <% end %>
+        <% end %>
+      </div>
+      <!-- GOOGLE MAP END -->
+    </div>
+    <div class="col-xs-12 col-sm-4">
+    <div class="card">
+      <div class="cards-mini-index">
+        <div id="sort-by-priority">
+        <h3 class="text-center">Les incidents à <%= @city.name %>:</h3>
+          <% @reports.order(submit_date: :desc).each do |rep| %>
+          <div class="card-mini-index-todo">
+            <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
+            <div class="degradation"> <%=rep.degradation.name %> </div>
+            <div class="creation-date"><%=rep.submit_date %></div>
+            <div class="furniture"> <%=rep.furniture.name %> </div>
+            <div class="status"> <%= rep.status.name %> </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+    </div>
+  </div>
 </div>
+
+
+<script>
+  // JS for the hover of the cards
+  const cards = document.querySelectorAll('.card-mini-index-todo');
+
+  function addColor() {
+    let classToAdd = this.childNodes[1].classList[1]
+    this.classList.add(classToAdd);
+  }
+
+  function removeColor() {
+    let classToRemove = this.childNodes[1].classList[1]
+    this.classList.remove(classToRemove);
+  }
+
+  cards.forEach(card => card.addEventListener('mouseenter', addColor));
+  cards.forEach(card => card.addEventListener('mouseleave', removeColor));
+</script>

@@ -1,9 +1,6 @@
-<form>
-  <select name="report[status_id]">
-    <% @status.each do |sta| %>
-      <option value="<%= sta.id %>"><%= sta.name %></option>
-    <% end %>
-  </select>
-<!--   <input type="status_id">
- -->  <input type="submit" value="Save">
-</form>
+
+<%= simple_form_for @report do |f| %>
+  <%= f.association :status, label: false %>
+  <%= f.submit %>
+<% end %>
+

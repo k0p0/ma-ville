@@ -39,12 +39,77 @@ width: 100%;
 .sidebar .nav-item + .nav-item {
 margin-left: 0;
 }
+
+//
+// HERE START MY TEST PART
+//
+.sidebar-test {
+  width: 80px;
+  position: fixed;
+  top: 71px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 0px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* Scrollable contents if viewport is shorter than content. */
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 0 0 0 rgba(0,0,0,0.07),2px 0 0 0 rgba(0,0,0,0.03);
+  img {
+    margin: 15px;
+  }
+}
+
+.nav-item-icon-description-test{
+    font-size: 10px !important;
+    font-weight: lighter !important;
+    text-align: center;
+    margin-top: -7px;
+  }
+
+.nav-item-test {
+  border: solid 1px $light-gray;
+  border-radius: 10px;
+  margin: 9px;
+  background-color: black;
+  opacity: 0.25;
+  cursor: pointer;
+
+  &:hover {
+    // transform: scale(1.1);
+    opacity: 0.8;
+    background-color: $green;
+  }
+}
+
+.selected-test {
+  border: solid 1px $light-gray;
+  border-radius: 10px;
+  margin: 9px;
+  opacity: 0.8 !important;
+  background-color: $green !important;
+}
+
+//
+// HERE FINISH MY TEST PART
+//
+
+
+
 .sidebar .nav-link {
 border-radius: 0;
 }
 .nav > li > a {
 padding: 5px 5px;
 }
+
+.nav-test > li > a {
+// padding: 15px 15px;
+}
+
 .dash-title{
 margin: 0px;
 }

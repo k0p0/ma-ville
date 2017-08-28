@@ -1,0 +1,23 @@
+.badge {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 36px;
+  font-size: 20px;
+  width: 40px;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.badge-status-attente {
+  background-color: $red;
+}
+.badge-status-cours {
+  background-color: $yellow;
+}
+.badge-status-prog {
+  background-color: $orange;
+}
+.badge-status-resolu {
+  background-color: $green;
+}

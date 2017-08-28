@@ -10,3 +10,6 @@
 //= require highcharts
 //= require chartkick
 //= require_tree .
+
+
+$('.alert').fadeOut(2000);

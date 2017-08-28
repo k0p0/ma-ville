@@ -1,6 +1,7 @@
 class CitiesController < ApplicationController
 
-  before_action :set_city, only: [:show, :update, :infos]
+  before_action :set_visitor_city, only: [ :infos]
+  before_action :set_user_city, only: [:show, :update]
   skip_before_action :authenticate_user!, only: [:show, :index, :infos]
 
   def show
@@ -40,7 +41,7 @@ class CitiesController < ApplicationController
 
   def update
     if @city.update(city_params)
-      redirect_to city_path(@city)
+      redirect_to city_path
     else
       render :edit
     end
@@ -72,8 +73,12 @@ class CitiesController < ApplicationController
 
   private
 
-  def set_city
+  def set_visitor_city
     @city = City.find(params[:id])
+  end
+
+  def set_user_city
+    @city = current_user.city
   end
 
   def city_params

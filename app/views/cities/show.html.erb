@@ -25,7 +25,7 @@
         </li>
         <li class="nav-item-icon-description-test"> DASHBOARD </li>
         <li class="nav-item-test">
-          <%= link_to image_tag("todo-2.png", alt: "To do list", width: 30, height: 30, border: 0), report_path %>
+          <%= link_to image_tag("todo-2.png", alt: "To do list", width: 30, height: 30, border: 0), reports_path %>
         </li>
         <li class="nav-item-icon-description-test"> LISTE </li>
         <li class="nav-item-test">
@@ -65,6 +65,9 @@
           <div>
             <h3 class="badge badge-status-resolu"><%= @resolu %></h3>
             <p>Résolu</p>
+          </div>
+          <div>
+            <%= link_to "Traiter les demandes", reports_path, class:"btn btn-primary" %>
           </div>
         </div>
 

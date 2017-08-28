@@ -189,3 +189,11 @@ padding-top: 15px;
 padding: 20px;
 }
 
+.flex-map-box{
+display: flex;
+align-items: center;
+justify-content: space-around;
+}
+.map-flex-item-dash-city{
+flex: 0 0 auto;
+}

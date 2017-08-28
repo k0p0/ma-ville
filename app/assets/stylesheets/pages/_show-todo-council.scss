@@ -10,7 +10,7 @@
 
 }
 
-.filters-container-todo, .card-index-todo, .cards-container-todo, .card-show-grid-todo, .grid-dates-status, .messages{
+.border-and-margin {
   border: solid 0.3px $light-gray;
   border-radius: 2px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
@@ -63,6 +63,7 @@
 
       &.unselected{
         font-weight: lighter;
+        cursor: pointer;
         &:hover {
           opacity: 0.8;
           color: $green
@@ -74,8 +75,6 @@
         background-color: $green;
         color: white;
         opacity: 0.8;
-
-
       }
     }
 
@@ -91,6 +90,7 @@
 
       &.unselected{
         font-weight: lighter;
+        cursor: pointer;
         &:hover {
           opacity: 0.8;
           color: $green
@@ -172,7 +172,7 @@
 
 
   display: grid;
-  grid-template-columns: 10px 87px 126px 76px 131px 1fr 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-columns: 13px 87px 126px 76px 131px 1fr 1fr 1fr 1fr 1fr 1fr ;
   grid-template-rows: 26px 32px 32px 32px 32px 39px 101px 1fr;
 
   .vertical-color-line {
@@ -291,6 +291,8 @@
         height: 8vh;
         border-radius: 4px;
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+
       }
       .selected-btn {
         opacity: 0.8;
@@ -427,15 +429,17 @@
     text-align: center;
     form {
         padding-left: 5px;
-      input {
-        margin-left: 10px;
-        width: 204px;
-        &:focus {
-          outline:none;
-        }
       }
     }
+    .input-text-message {
+      margin-left: 10px !important;
+      width: 204px !important;
+      &:focus {
+        outline:none;
+    }
+    .btn-message {
 
+    }
   }
 }
 

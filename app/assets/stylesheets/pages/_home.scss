@@ -97,8 +97,12 @@
   line-height: 1.4;
 }
 // Specific CSS for your home-page
+
 .content-wrapper {
-  min-height: 100vh;
+
+  ////// I'VE JUST CHANGED FOR A TEST
+  // min-height: 100vh;
+  min-height: calc(100vh-70px);
   // margin-top: 70px;
 }
 

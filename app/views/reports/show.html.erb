@@ -7,11 +7,7 @@
         </li>
         <li class="nav-item-icon-description-test"> DASHBOARD </li>
         <li class="selected-test">
-<!-- <<<<<<< HEAD
-          <%#= link_to image_tag("todo.png", alt: "To do list", width: 30, height: 30, border: 0), city_path %>
-======= -->
           <%= link_to image_tag("todo-2.png", alt: "To do list", width: 30, height: 30, border: 0), report_path %>
-<!-- >>>>>>> master -->
         </li>
         <li class="nav-item-icon-description-test"> LISTE </li>
         <li class="nav-item-test">
@@ -26,7 +22,7 @@
     </nav>
   </div>
 
-  <div class="cards-container-todo">
+  <div class="cards-container-todo border-and-margin">
     <div class="ranking-choice">
       <div id="by-priority" class="selected">PRIORITÉ</div>
       <div id="by-date" class="unselected">DATE</div>
@@ -34,7 +30,7 @@
     <div id="sort-by-priority">
       <% @reports.order(priority_id: :desc).each do |rep| %>
         <%= link_to report_path(rep) do%>
-          <div class="card-index-todo">
+          <div class="card-index-todo border-and-margin">
             <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
             <div class="degradation"> <%=rep.degradation.name %> </div>
             <div class="creation-date"><%=rep.submit_date %></div>
@@ -47,7 +43,7 @@
     <div id="sort-by-date" style="display: none;">
       <% @reports.order(submit_date: :desc).each do |rep| %>
         <%= link_to report_path(rep) do%>
-          <div class="card-index-todo">
+          <div class="card-index-todo border-and-margin">
             <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
             <div class="degradation"> <%=rep.degradation.name %> </div>
             <div class="creation-date"><%=rep.submit_date %></div>
@@ -59,7 +55,7 @@
     </div>
   </div>
 
-  <div class="card-show-grid-todo">
+  <div class="card-show-grid-todo border-and-margin">
     <div class="vertical-color-line <%= "#{@report.priority.name}" + "-color" %>"></div>
     <div class="priority-text text-form">Priorité :</div>
     <div class="priority content-form-important <%= "#{@report.priority.name}" + "-text-color" %>">
@@ -79,15 +75,15 @@
       <div class="status-text text-form"> Slectionnez le status en cours :</div>
       <div class="status-btn attente">
         <%= simple_form_for @report do |f| %>
-          <%#= f.input :status %>
-          <%= f.button :button, class: "unselected-btn btn-style" do %>
+          <%= f.input :status_id, as: :hidden,  input_html: {value: Status.find_by_name('En attente de traitement').id} %>
+          <%= f.button :button, class: "#{@report.status.name == 'En attente de traitement' ? 'selected-btn' :  'unselected-btn'} btn-style" do %>
             EN ATTENTE
           <% end %>
         <% end %>
       </div>
       <div class="status-btn commande-cours">
         <%= simple_form_for @report do |f| %>
-          <%#= f.input :status %>
+          <%= f.input :status_id, as: :hidden,  input_html: {value: Status.find_by_name('Commande en cours').id} %>
           <%= f.button :button, class: "unselected-btn btn-style" do %>
             COMMANDE EN <br> COURS
           <% end %>
@@ -95,7 +91,7 @@
       </div>
       <div class="status-btn intervention-pgm">
         <%= simple_form_for @report do |f| %>
-          <%#= f.input :status %>
+          <%= f.input :status_id, as: :hidden,  input_html: {value: Status.find_by_name('Intervention programmée').id} %>
           <%= f.button :button, class: "selected-btn btn-style" do %>
             INTERVENTION <br> PROGRAMMÉE
           <% end %>
@@ -103,7 +99,7 @@
       </div>
       <div class="status-btn intervention-cours">
         <%= simple_form_for @report do |f| %>
-          <%#= f.input :status %>
+          <%= f.input :status_id, as: :hidden,  input_html: {value: Status.find_by_name('Intervention en cours').id} %>
           <%= f.button :button, class: "unselected-btn btn-style" do %>
             INTERVENTION <br> EN COURS
           <% end %>
@@ -111,7 +107,7 @@
       </div>
       <div class="status-btn resolu">
         <%= simple_form_for @report do |f| %>
-          <%#= f.input :status %>
+          <%= f.input :status_id, as: :hidden,  input_html: {value: Status.find_by_name('Résolu').id} %>
           <%= f.button :button, class: "unselected-btn btn-style" do %>
             RÉSOLU
           <% end %>
@@ -119,7 +115,7 @@
       </div>
       <div class="status-btn annule">
         <%= simple_form_for @report do |f| %>
-          <%#= f.input :status %>
+          <%= f.input :status_id, as: :hidden,  input_html: {value: Status.find_by_name('Annulé').id} %>
           <%= f.button :button, class: "unselected-btn btn-style" do %>
             ANNULÉ
           <% end %>
@@ -128,7 +124,7 @@
     </div>
      <!--  <div class="title">Resolution date</div> -->
      <!-- <div class="resolution"><%#=@report.resolution_date %></div>-->
-    <div class="messages">
+    <div class="messages border-and-margin">
       <div class="list-of-messages">
       <div class="card-message-title"> Ajoutez vos notes :</div>
         <% @report.messages.order(submit_message_date: :desc).each do |mes| %>
@@ -139,10 +135,14 @@
         <% end %>
       </div>
       <div class="form-add-a-message">
-        <form action="">
-            <input type="text" name="new-message">
-            <input type="submit" value="Add">
-        </form>
+        <%= simple_form_for [@report,   @new_message] do | f | %>
+          <%= f.input :note %>
+          <%= f.submit %>
+        <% end %>
+        <!-- <form action="">
+            <input type="text" name="new-message" class="input-text-message">
+            <input type="submit" value="Add" class="btn-message">
+        </form> -->
       </div>
     </div>
     <div class="picture-flexbox">

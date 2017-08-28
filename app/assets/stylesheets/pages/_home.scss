@@ -98,7 +98,8 @@
 }
 // Specific CSS for your home-page
 .content-wrapper {
-  min-height: 100vh;
+  // min-height: 100vh;
+  min-height: calc(100vh - 70px);
   // margin-top: 70px;
 }
 

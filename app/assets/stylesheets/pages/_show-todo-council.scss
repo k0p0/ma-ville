@@ -172,7 +172,7 @@
 
 
   display: grid;
-  grid-template-columns: 13px 87px 126px 76px 131px 1fr 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-columns: 13px 87px 151px 74px 101px 1fr 1fr 1fr 1fr 1fr 1fr ;
   grid-template-rows: 26px 32px 32px 32px 32px 39px 101px 1fr;
 
   .vertical-color-line {
@@ -218,6 +218,16 @@
 
   .creation-date {
     grid-row: 2 / span 1;
+    grid-column: 5 / span 2;
+  }
+
+  .resolution-date-text {
+    grid-row: 3 / span 1;
+    grid-column: 4 / span 1;
+  }
+
+  .resolution-date {
+    grid-row: 3 / span 1;
     grid-column: 5 / span 2;
   }
 
@@ -385,7 +395,7 @@
 }
 
 .list-of-messages {
-  height: 39vh;
+  height: 27vh;
   overflow: scroll;
   display: flex;
   flex-direction: column;

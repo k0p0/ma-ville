@@ -15,8 +15,8 @@ class ReportsController < ApplicationController
       marker.lat report.report_latitude
       marker.lng report.report_longitude
     @status = Status.all
+
     end
-    # raise
 
   end
 

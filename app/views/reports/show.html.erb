@@ -160,8 +160,9 @@
       </div>
     </div>
     <div class="picture-flexbox">
-      <%#= image_tag "graffiti.jpg" %>
-      <%= cl_image_tag @report.picture.path, crop: :fill %>
+      <% if @report.picture.present? %>
+        <%= cl_image_tag @report.picture.path, crop: :fill %>
+      <% end %>
     </div>
     <div id="map"></div>
     <% content_for(:after_js) do %>

@@ -1,0 +1,4 @@
+        <%= simple_form_for [report, message], remote: true do |form| %>
+          <%= form.input :note, placeholder: "Ajoutez votre note", label: false, :input_html => { :class => 'input-text-message' } %>
+          <%= form.submit value: "AJOUTER", input_html: { class: 'btn-message' } %>
+        <% end %>

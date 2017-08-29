@@ -9,6 +9,7 @@
     <% end %>
   <% end %>
 
+
   <% if user_signed_in? %>
     <% unless current_page?(root_path) %>
       <h2 class="text-center"> <%= current_user.city.name.upcase %></h2>
@@ -16,7 +17,18 @@
   <% end %>
 
   <!-- Right Navigation -->
+
+
   <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <form method="post" action="/cities/search">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+
+    <input class="typeahead" type="text" name="query" id="query" placeholder="Trouver ma ville" />
+    <input type="submit" style="display:none;">
+  </form>
+      <% link_to search_cities_path do %>
+        <i class="fa fa-search btn-search" aria-hidden="true"></i>
+      <% end %>
 
     <% if user_signed_in? %>
 
@@ -60,4 +72,6 @@
     </div>
   </div> -->
 </div>
+
+
 

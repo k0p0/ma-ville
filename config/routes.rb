@@ -6,11 +6,15 @@ Rails.application.routes.draw do
   resources :statuses
 
   resources :cities, only: [:index, :show, :edit, :update]  do
+    collection do
+      get :autocomplete
+      post :search
+    end
     member do
       get :infos
     end
   end
-  
+
   resources :reports, only: [:new, :create ]
 
   resources :reports, only: [:index, :show, :edit, :update, :destroy] do

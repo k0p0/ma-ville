@@ -9,4 +9,5 @@
 //= require Chart.bundle
 //= require highcharts
 //= require chartkick
+//= require twitter/typeahead
 //= require_tree .

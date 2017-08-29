@@ -94,9 +94,9 @@
     </div>
     <div class="resolution-date content-form-important">
       <% if @report.status.name == "Résolu" %>
-        <%= "" %>
-      <% else %>
         <%=l(@report.resolution_date, format: '%d %B %Y', :locale => 'fr') %>
+      <% else %>
+        <%= "" %>
       <% end %>
     </div>
     <div class="degradation-text text-form">Dégradation :</div>

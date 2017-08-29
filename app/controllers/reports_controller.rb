@@ -4,22 +4,25 @@ require 'open-uri'
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
   # before_action :set_default, only: [:create, :update]
-  skip_before_action :authenticate_user!, only: [:new, :create, :show]
+  skip_before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @reports = Report.all
+    @reports = current_user.reports
+
+    @report = @reports.first
+    show
+    render :show
   end
 
   def show
-    @reports = Report.all
+    @reports = current_user.reports
     @messages = Message.all
-    @city = City.new
+    @new_message = @report.messages.build
     @hash = Gmaps4rails.build_markers(@report) do |report, marker|
       marker.lat report.report_latitude
       marker.lng report.report_longitude
     @status = Status.all
     end
-    # raise
 
   end
 
@@ -56,7 +59,6 @@ class ReportsController < ApplicationController
   end
 
   def edit
-    @status = Status.all
   end
 
   def update
@@ -75,7 +77,7 @@ class ReportsController < ApplicationController
   private
 
   def set_report
-    @report = Report.find(params[:id])
+    @report = current_user.reports.find(params[:id])
   end
 
   def set_default

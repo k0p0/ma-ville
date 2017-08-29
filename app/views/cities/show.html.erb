@@ -1,113 +1,93 @@
 <div class="grid-dash-city">
   <!-- sidebar -->
-  <div class="sidebar-dash-city">
-    <nav class="sidebar">
-      <ul class="nav list-group">
-        <li class="nav-item active">
-          <%= link_to image_tag("dashboard.png", alt: "dashboard", height: 50, width: 50, border: 0), city_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to image_tag("todo.png", alt: "To do list", width: 50, height: 50, border: 0), report_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to image_tag("info.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>
-        </li>
-        <li class="nav-item">
-        <%= link_to image_tag("archive.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>      </ul>
+    <div class="vertical-navbar-todo">
+      <nav class="sidebar-test">
+        <ul class="nav-test list-group">
+          <li class="selected-test">
+            <%= link_to image_tag("dashboard-2.png", alt: "dashboard", height: 30, width: 30, border: 0), city_path %>
+          </li>
+          <li class="nav-item-icon-description-test"> DASHBOARD </li>
+          <li class="nav-item-test">
+            <%= link_to image_tag("todo-2.png", alt: "To do list", width: 30, height: 30, border: 0), reports_path %>
+          </li>
+          <li class="nav-item-icon-description-test"> LISTE </li>
+          <li class="nav-item-test">
+            <%= link_to image_tag("info-2.png", alt: "To do list", width: 30, height: 30, border: 0), city_path %>
+          </li>
+          <li class="nav-item-icon-description-test"> MA VILLE </li>
+          <li class="nav-item-test">
+            <%= link_to image_tag("archive-2.png", alt: "To do list", width: 30, height: 30, border: 0), city_path %>
+          </li>
+          <li class="nav-item-icon-description-test"> ARCHIVES </li>
+        </ul>
       </nav>
     </div>
-    <div class="stats-line-dash-city text-center">
-      <ul class="list-unstyled stats-flex-dash-city">
-        <!--
-        id: 1, name: "En attente de traitement"
-        id: 2, name: "Commande en cours"
-        id: 3, name: "Intervention programmée"
-        id: 4, name: "Intervention en cours"
-        id: 5, name: "Résolu"
-        id: 6, name: "Annulé" -->
-        <% if @city.reports.size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("total.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: black">Aucun incident répertorié</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("total.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: black">Total: <%= @city.reports.size %> <%= "incident".pluralize @city.reports.size %></span></b>
-        </li>
-        <% end %>
-        <% if @city.reports.where(status_id: 1).size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("enattente.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: red">Aucun incident en attente</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("enattente.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: red">En attente: <%= @city.reports.where(status_id: 1).size %> <%= "incident".pluralize @city.reports.where(status_id: 1).size %> </span></b>
-        </li>
-        <% end %>
-        <% if @city.reports.where(status_id: [2,4]).size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("encours.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: #FFED78">Aucun incident en cours de résolution</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("encours.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: #FFED78">En cours: <%= @city.reports.where(status_id: [2,4]).size %> <%= "incident".pluralize @city.reports.where(status_id: [2,4]).size %></span></b>
-        </li>
-        <% end %>
-        <% if @city.reports.where(status_id: 3).size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("schedule.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: orange">Aucun incident en cours de résolution</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("schedule.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: orange">Intervention programmée: <%= @city.reports.where(status_id: 3).size %> <%= "incident".pluralize @city.reports.where(status_id: 3).size %></span></b>
-        </li>
-        <% end %>
-        <% if @city.reports.where(status_id: 5).size == 0 %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("resolu.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: green">Aucun incident résolu</span></b>
-        </li>
-        <% else %>
-        <li class="stats-flex-item-dash-city">
-          <%= image_tag("resolu.png",height: 70, width: 70, border: 0) %> <br>
-          <b><span style="color: green">Résolu: <%= @city.reports.where(status_id: 5).size %> <%= "incident".pluralize @city.reports.where(status_id: 5).size %></span></b>
-        </li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="rest-grid-dash-city">
-      <div class="map-dash-city">
-        <!-- GOOGLE MAP -->
-        <div id="map" style="width: 100%; height: 800px; border-radius: 5px; "></div>
-        <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-        $(document).ready(function() {
-        var handler = Gmaps.build('Google');
-        handler.buildMap({ internal: { id: 'map' } }, function() {
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-        handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-        handler.getMap().setZoom(14);
-        }
-        });
-        });
-        <% end %>
-        <% end %>
+    <!-- FIN SIDEBAR -->
+    <div class="grid-dash-inside">
+      <div class="grid-dash-map">
+        <div class="stats-flex-dash-city text-center">
+        <div class="moumoute">
+        <div>
+          <h4>Incidents</h4>
+        </div>
+        <div style="border-left:1px solid #EEEEEE;height:80px">
+        </div>
+        </div>
+          <div class="map-flex-item-dash-city">
+            <h3 class="badge"><%= @city.reports.size %></h3>
+            <p>Total</p>
+          </div>
+          <div class="map-flex-item-dash-city">
+            <h3 class="badge badge-status-attente"><%= @attente %></h3>
+            <p>A traiter</p>
+          </div>
+          <div class="map-flex-item-dash-city">
+            <h3 class="badge badge-status-cours"><%= @cours %></h3>
+            <p>En cours</p>
+          </div>
+          <div class="map-flex-item-dash-city">
+            <h3 class="badge badge-status-prog"><%= @prog %></h3>
+            <p>Programmée</p>
+          </div>
+          <div class="map-flex-item-dash-city">
+            <h3 class="badge badge-status-resolu"><%= @resolu %></h3>
+            <p>Résolu</p>
+          </div>
+
+        </div>
+        <div class="map-dash-city">
+          <!-- GOOGLE MAP -->
+          <div id="map" style="width: 100%; height: 700px; border-radius: 5px; "></div>
+          <% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+          $(document).ready(function() {
+          var handler = Gmaps.build('Google');
+          handler.buildMap({ internal: { id: 'map' } }, function() {
+          markers = handler.addMarkers(<%= raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+          } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+          }
+          });
+          });
+          <% end %>
+          <% end %>
+        </div>
+        <!-- GOOGLE MAP END -->
       </div>
-      <!-- GOOGLE MAP END -->
+      <div class="grid-dash-col-droite">
+      <div class="action-col-dash-city">
+        <div>
+            <%= link_to "Traiter les demandes", reports_path, class:"btn btn-primary" %>
+          </div>
+      </div>
       <div class="stats-col-dash-city">
         <h4 class="text-center">Répartition par types d'incidents</h4>
         <div class="padding-chart" id="chart1"></div>
+        <hr>
         <h4 class="text-center">Répartition par support</h4>
         <div class= "padding-chart" id="chart2"></div>
         <% content_for(:after_js) do %>
@@ -122,6 +102,7 @@
         <%= pie_chart Report.joins(:furniture).where(city: @city).group(:name).count, id: "chart2", donut: true, legend: "bottom" %> <!-- , adapter: "google" , adapter: "high-->
         <% end %>
         <% end %>
+      </div>
       </div>
     </div>
   </div>

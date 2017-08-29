@@ -12,7 +12,7 @@
 
   <% if user_signed_in? %>
     <% unless current_page?(root_path) %>
-      <h2 class="text-center"> <%= current_user.city.name.upcase %></h2>
+      <h2 class="text-center dash-title city-underline"> <%= current_user.city.name.upcase %></h2>
     <% end %>
   <% end %>
 
@@ -48,7 +48,7 @@
               <%= link_to "Information", root_path %>
             </li>
             <li>
-              <%= link_to "Ma mairie", city_path(current_user.city_id) %>
+              <%= link_to "Ma mairie", city_path %>
             </li>
             <li>
               <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>

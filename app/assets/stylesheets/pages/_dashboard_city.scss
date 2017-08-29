@@ -39,15 +39,83 @@ width: 100%;
 .sidebar .nav-item + .nav-item {
 margin-left: 0;
 }
+
+//
+// HERE START MY TEST PART
+//
+.sidebar-test {
+  width: 80px;
+  position: fixed;
+  top: 71px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 0px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* Scrollable contents if viewport is shorter than content. */
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  // box-shadow: 1px 0 0 0 rgba(0,0,0,0.07),2px 0 0 0 rgba(0,0,0,0.03);
+  img {
+    margin: 15px;
+  }
+}
+
+.nav-item-icon-description-test{
+    font-size: 10px !important;
+    font-weight: lighter !important;
+    text-align: center;
+    margin-top: -7px;
+  }
+
+.nav-item-test {
+  border: solid 1px $light-gray;
+  border-radius: 10px;
+  margin: 9px;
+  background-color: black;
+  opacity: 0.25;
+  cursor: pointer;
+
+  &:hover {
+    // transform: scale(1.1);
+    opacity: 0.8;
+    background-color: $green;
+  }
+}
+
+.selected-test {
+  border: solid 1px $light-gray;
+  border-radius: 10px;
+  margin: 9px;
+  opacity: 0.8 !important;
+  background-color: $green !important;
+}
+
+//
+// HERE FINISH MY TEST PART
+//
+
+
+
 .sidebar .nav-link {
 border-radius: 0;
 }
 .nav > li > a {
 padding: 5px 5px;
 }
+
+.nav-test > li > a {
+// padding: 15px 15px;
+}
+
 .dash-title{
 margin: 0px;
 }
+
+
+
 /*
 * Dashboard
 */
@@ -62,75 +130,93 @@ margin: 0px;
 .grid-dash-city{
 display: grid;
 grid-template-columns: 80px 1fr;
-grid-template-rows: 50px 110px 1fr;
-// border: 1px solid black;
-min-height: calc(100vh - 70px)
+grid-template-rows: 1fr;
+min-height: calc(100vh - 70px);
 }
+
 .sidebar-dash-city{
-grid-row: 1 / span 3;
+grid-row: 1 / span 1;
 grid-column: 1 / span 1;
-// border: 1px solid green;
 }
-// .navbar-dash-city{
-//   grid-row: 1 / span 1;
-//   grid-column: 2 / span 1;
-//   // border: 1px solid blue;
-//   & h2 {
-//     margin-top: 2px;
-//     margin-bottom: 2px;
-//     font-weight: bold;
-//     }
-//   }
-.stats-line-dash-city{
-grid-row: 2 / span 1;
-grid-column: 2 / span 1;
-// border: 1px solid orange;
-// box-shadow: 1px 0 0 0 rgba(0,0,0,0.07),2px 0 0 0 rgba(0,0,0,0.03);
+
+.grid-dash-inside {
+display: grid;
+grid-template-columns: 70% 1fr;
+grid-template-rows: 1fr;
 }
+
+.grid-dash-col-droite {
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 15% 1fr;
+}
+
+.grid-dash-map {
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 15% 1fr;
+}
+
 .stats-flex-dash-city{
+grid-row: 1 / span 1;
+grid-column: 1 / span 1;
 display: flex;
 align-items: center;
-justify-content: space-around;
+justify-content: space-between;
+flex-wrap: wrap;
+padding-left: 40px;
+padding-right: 60px;
+margin-top: 20px;
 }
-.stats-flex-item-dash-city{
-flex: 0 0 auto;
+
+.moumoute{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 25%;
 }
+
+
 .map_box {
 width: 450px !important;
 top: 15px !important; // move the infowindow 15px down
 left: 0 !important;
 background-color: #fff;
-// box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
-// border: 1px solid rgba(72, 181, 233, 0.6);
 border-radius: 2px 2px 0 0;
 }
+
+.map-dash-city{
+grid-row: 2 / span 1;
+grid-column: 1 / span 1;
+padding: 20px;
+}
+
+.action-col-dash-city{
+grid-row: 1 / span 1;
+grid-column: 1 / span 1;
+padding-top: 15px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+}
+
+.stats-col-dash-city{
+grid-row: 2 / span 1;
+grid-column: 1 / span 1;
+padding-top: 10px;
+}
+
+.padding-chart{
+ padding: 10px;
+}
+
 .flex-map-box{
 display: flex;
 align-items: center;
 justify-content: space-around;
 }
 .map-flex-item-dash-city{
-flex: 0 0 auto;
+flex: 0 0 15%;
 }
-.rest-grid-dash-city{
-grid-row: 3 / span 1;
-grid-column: 2 / span 1;
-// border: 1px solid orange;
-display: grid;
-grid-template-columns: 70% 1fr;
-grid-template-rows: 1fr 1fr;
-.map-dash-city{
-grid-row: 1 / span 2;
-grid-column: 1 / span 1;
-padding: 20px;
-// border: 1px dashed red;
-}
-.stats-col-dash-city{
-grid-row: 1 / span 2;
-grid-column: 2 / span 1;
-// border: 1px dashed yellow;
-}
-.padding-chart{
-padding: 20px;
-}
-}
+
+

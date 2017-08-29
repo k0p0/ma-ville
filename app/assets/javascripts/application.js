@@ -11,3 +11,6 @@
 //= require chartkick
 //= require twitter/typeahead
 //= require_tree .
+
+
+$('.alert').fadeOut(2000);

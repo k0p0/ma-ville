@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  # resources :degradations
+  # resources :furnitures
+  # resources :priorities
+  # resources :statuses
 
-  resources :degradations
-  resources :furnitures
-  resources :priorities
-  resources :statuses
-
+  # AS SOMEONE THAT REPORTS AN INIDENT
   resources :cities, only: [:index, :show, :edit, :update]  do
     collection do
       get :autocomplete
@@ -17,7 +17,11 @@ Rails.application.routes.draw do
 
   resources :reports, only: [:new, :create ]
 
-  resources :reports, only: [:index, :show, :edit, :update, :destroy] do
+
+  # AS CITY OWNER
+  resource :city, only: [:show, :edit, :update]
+
+  resources :reports do #, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :messages, only: [:index, :new, :create]
   end
 

@@ -19,25 +19,13 @@
 
 .banner .button-down {
   // margin-top: 300px;
-  position: relative;
-    top: 9em;
+  position: absolute;
+    bottom: 20px;
 }
 
-.head-title {
-    position: relative;
-    top: 8em;
-  }
 
 .head-title p {
   font-style: $body-font;
-}
-
-.content-section-c .button-down {
-  margin-top: 2em;
-}
-
-.button-down {
-  margin-top: 180px;
 }
 
 .button-down .img-down {
@@ -66,10 +54,16 @@
   // border-bottom: 1px solid #e7e7e7;
   // padding: 120px 0;
   height: 100vh;
+  position: relative;
   background-color: white;
   background-image: linear-gradient(-225deg, rgba(134, 147, 156, 0.4) 0%, rgba(98, 107, 113, 0.4) 50%), url("http://res.cloudinary.com/lmdn/image/upload/v1503585829/paris_wom0yv.jpg");
   background-size: cover;
   color: white;
+}
+
+.content-section-b .button-down {
+  position: absolute;
+  bottom: 20px;
 }
 
 .content-section-c {
@@ -77,11 +71,17 @@
   // border-bottom: 1px solid #e7e7e7;
   // padding: 120px 0;
   height: 100vh;
+  position: relative;
   background-color: white;
   background-image: linear-gradient(-225deg, rgba(134, 147, 156, 0.4) 0%, rgba(98, 107, 113, 0.4) 50%), url("http://res.cloudinary.com/lmdn/image/upload/v1503586822/paris7_lzyjgq.jpg");
   background-size: cover;
   font-weight: bolder;
   color: white;
+}
+
+.content-section-c .button-down {
+  position: absolute;
+  bottom: 20px;
 }
 
 .wrap_title{margin-bottom: 30px;}
@@ -97,9 +97,10 @@
   line-height: 1.4;
 }
 // Specific CSS for your home-page
+
 .content-wrapper {
-  min-height: 100vh;
-  // margin-top: 70px;
+  // min-height: 100vh;
+  min-height: calc(100vh - 70px);
 }
 
 @media (max-width: 720px) {
@@ -113,18 +114,9 @@
       min-height: 100%;
   }
 
-  .head-title {
-    position: relative;
-    top: 6em;
-  }
-
   .banner .banner-content {
     margin: 0 10px;
   }
-
-  .banner .button-down {
-    top: 4em;
-}
 
   .tworow {
     margin-top: 0px;

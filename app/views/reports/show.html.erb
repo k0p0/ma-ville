@@ -84,7 +84,7 @@
       <%=@report.priority.name %>
     </div>
     <div class="creation-date-text text-form">Déclaré le : </div>
-    <div class="creation-date content-form-important"><%=l(rep.submit_date, format: '%d %B %Y', :locale => 'fr') %></div>
+    <div class="creation-date content-form-important"><%=l(@report.submit_date, format: '%d %B %Y', :locale => 'fr') %></div>
     <div class="resolution-date-text text-form">
       <% if @report.status.name == "Résolu" %>
         <%= "" %>
@@ -96,7 +96,7 @@
       <% if @report.status.name == "Résolu" %>
         <%= "" %>
       <% else %>
-        <%=l(report.resolution_date, format: '%d %B %Y', :locale => 'fr') %>
+        <%=l(@report.resolution_date, format: '%d %B %Y', :locale => 'fr') %>
       <% end %>
     </div>
     <div class="degradation-text text-form">Dégradation :</div>

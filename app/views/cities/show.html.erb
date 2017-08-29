@@ -1,79 +1,63 @@
 <div class="grid-dash-city">
   <!-- sidebar -->
-<!--   <div class="sidebar-dash-city">
-    <nav class="sidebar">
-      <ul class="nav list-group">
-        <li class="nav-item active">
-          <%#= link_to image_tag("dashboard.png", alt: "dashboard", height: 50, width: 50, border: 0), city_path %>
-        </li>
-        <li class="nav-item">
-          <%#= link_to image_tag("todo.png", alt: "To do list", width: 50, height: 50, border: 0), report_path %>
-        </li>
-        <li class="nav-item">
-          <%#= link_to image_tag("info.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>
-        </li>
-        <li class="nav-item">
-        <%#= link_to image_tag("archive.png", alt: "To do list", width: 70, height: 70, border: 0), city_path %>      </ul>
-      </nav>
-    </div> -->
-
     <div class="vertical-navbar-todo">
-    <nav class="sidebar-test">
-      <ul class="nav-test list-group">
-        <li class="selected-test">
-          <%= link_to image_tag("dashboard-2.png", alt: "dashboard", height: 30, width: 30, border: 0), city_path %>
-        </li>
-        <li class="nav-item-icon-description-test"> DASHBOARD </li>
-        <li class="nav-item-test">
-          <%= link_to image_tag("todo-2.png", alt: "To do list", width: 30, height: 30, border: 0), reports_path %>
-        </li>
-        <li class="nav-item-icon-description-test"> LISTE </li>
-        <li class="nav-item-test">
-          <%= link_to image_tag("info-2.png", alt: "To do list", width: 30, height: 30, border: 0), city_path %>
-        </li>
-        <li class="nav-item-icon-description-test"> MA VILLE </li>
-        <li class="nav-item-test">
-        <%= link_to image_tag("archive-2.png", alt: "To do list", width: 30, height: 30, border: 0), city_path %>
-        </li>
-        <li class="nav-item-icon-description-test"> ARCHIVES </li>
-      </ul>
-    </nav>
-  </div>
+      <nav class="sidebar-test">
+        <ul class="nav-test list-group">
+          <li class="selected-test">
+            <%= link_to image_tag("dashboard-2.png", alt: "dashboard", height: 30, width: 30, border: 0), city_path %>
+          </li>
+          <li class="nav-item-icon-description-test"> DASHBOARD </li>
+          <li class="nav-item-test">
+            <%= link_to image_tag("todo-2.png", alt: "To do list", width: 30, height: 30, border: 0), reports_path %>
+          </li>
+          <li class="nav-item-icon-description-test"> LISTE </li>
+          <li class="nav-item-test">
+            <%= link_to image_tag("info-2.png", alt: "To do list", width: 30, height: 30, border: 0), city_path %>
+          </li>
+          <li class="nav-item-icon-description-test"> MA VILLE </li>
+          <li class="nav-item-test">
+            <%= link_to image_tag("archive-2.png", alt: "To do list", width: 30, height: 30, border: 0), city_path %>
+          </li>
+          <li class="nav-item-icon-description-test"> ARCHIVES </li>
+        </ul>
+      </nav>
+    </div>
     <!-- FIN SIDEBAR -->
     <div class="grid-dash-inside">
       <div class="grid-dash-map">
         <div class="stats-flex-dash-city text-center">
-          <div>
-            <h3>Incidents</h3>
-          </div>
-          <div>
+        <div class="moumoute">
+        <div>
+          <h4>Incidents</h4>
+        </div>
+        <div style="border-left:1px solid #EEEEEE;height:80px">
+        </div>
+        </div>
+          <div class="map-flex-item-dash-city">
             <h3 class="badge"><%= @city.reports.size %></h3>
             <p>Total</p>
           </div>
-          <div>
+          <div class="map-flex-item-dash-city">
             <h3 class="badge badge-status-attente"><%= @attente %></h3>
             <p>A traiter</p>
           </div>
-          <div>
+          <div class="map-flex-item-dash-city">
             <h3 class="badge badge-status-cours"><%= @cours %></h3>
             <p>En cours</p>
           </div>
-          <div>
+          <div class="map-flex-item-dash-city">
             <h3 class="badge badge-status-prog"><%= @prog %></h3>
             <p>Programmée</p>
           </div>
-          <div>
+          <div class="map-flex-item-dash-city">
             <h3 class="badge badge-status-resolu"><%= @resolu %></h3>
             <p>Résolu</p>
           </div>
-          <div>
-            <%= link_to "Traiter les demandes", reports_path, class:"btn btn-primary" %>
-          </div>
-        </div>
 
+        </div>
         <div class="map-dash-city">
           <!-- GOOGLE MAP -->
-          <div id="map" style="width: 100%; height: 650px; border-radius: 5px; "></div>
+          <div id="map" style="width: 100%; height: 700px; border-radius: 5px; "></div>
           <% content_for(:after_js) do %>
           <%= javascript_tag do %>
           $(document).ready(function() {
@@ -94,6 +78,12 @@
         </div>
         <!-- GOOGLE MAP END -->
       </div>
+      <div class="grid-dash-col-droite">
+      <div class="action-col-dash-city">
+        <div>
+            <%= link_to "Traiter les demandes", reports_path, class:"btn btn-primary" %>
+          </div>
+      </div>
       <div class="stats-col-dash-city">
         <h4 class="text-center">Répartition par types d'incidents</h4>
         <div class="padding-chart" id="chart1"></div>
@@ -112,6 +102,7 @@
         <%= pie_chart Report.joins(:furniture).where(city: @city).group(:name).count, id: "chart2", donut: true, legend: "bottom" %> <!-- , adapter: "google" , adapter: "high-->
         <% end %>
         <% end %>
+      </div>
       </div>
     </div>
   </div>

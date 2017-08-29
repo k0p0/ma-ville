@@ -28,8 +28,9 @@ puts "Start create furnitures"
 Furniture.create(name: "Immeuble / Commerce / Monument")
 Furniture.create(name: "Chaussée / Voirie")
 Furniture.create(name: "Signalétique / Eclairage")
-Furniture.create(name: "Parcs / Jardins")
-Furniture.create(name: "Mobiliers urbains")
+Furniture.create(name: "Parc / Jardin")
+Furniture.create(name: "Mobilier urbain")
+Furniture.create(name: "Chantier")
 puts "all furnitures are created"
 
 

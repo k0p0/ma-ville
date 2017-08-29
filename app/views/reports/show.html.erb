@@ -29,24 +29,26 @@
     </div>
     <div id="sort-by-priority">
       <% @reports.order(priority_id: :desc).each do |rep| %>
-        <%= link_to report_path(rep) do%>
-          <div class="card-index-todo border-and-margin">
-            <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
-            <div class="degradation"> <%=rep.degradation.name %> </div>
-            <div class="creation-date"><%=rep.submit_date %></div>
-            <div class="furniture"> <%=rep.furniture.name %> </div>
-            <div class="status"> <%= rep.status.name %> </div>
-          </div>
+        <% unless rep.status.name == "Résolu" || rep.status.name == "Annulé" %>
+          <%= link_to report_path(rep) do %>
+            <div class="card-index-todo border-and-margin <%= rep == @report ? "#{rep.priority.name}" + "-color" : "card-index-unopened" %>">
+              <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
+              <div class="degradation"> <%=rep.degradation.name %> </div>
+              <div class="creation-date"><%=l(rep.submit_date, format: '%d %B %Y', :locale => 'fr') %></div>
+              <div class="furniture"> <%=rep.furniture.name %> </div>
+              <div class="status"> <%= rep.status.name %> </div>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>
     <div id="sort-by-date" style="display: none;">
       <% @reports.order(submit_date: :desc).each do |rep| %>
         <%= link_to report_path(rep) do%>
-          <div class="card-index-todo border-and-margin">
+          <div class="card-index-todo border-and-margin <%= rep == @report ? "#{rep.priority.name}" + "-color" : "card-index-unopened" %>">
             <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
             <div class="degradation"> <%=rep.degradation.name %> </div>
-            <div class="creation-date"><%=rep.submit_date %></div>
+            <div class="creation-date"><%=l(rep.submit_date, format: '%d %B %Y', :locale => 'fr') %></div>
             <div class="furniture"> <%=rep.furniture.name %> </div>
             <div class="status"> <%= rep.status.name %> </div>
           </div>
@@ -55,26 +57,46 @@
     </div>
   </div>
 
-  <div class="card-show-grid-todo border-and-margin">
+  <div class="card-edit-report border-and-margin" style="display: none;">
+    <fieldset>
+      <h2 class="fs-title">Type d'incident</h2>
+      <h3 class="fs-subtitle">Quel incident ?</h3>
+      <select class="form-control select required" name="report[degradation_id]" id="report_degradation_id"><option value=""></option>
+      <% Degradation.all.each do |degration| %>
+      <option value="<%= degration.id %>"><%= degration.name %></option>
+      <% end %>
+      </select>
+      <h3 class="fs-subtitle">Sur quel mobilier ?</h3>
+      <select class="form-control select required" name="report[furniture_id]" id="report_furniture_id"><option value=""></option>
+      <% Furniture.all.each do |furniture| %>
+      <option value="<%= furniture.id %>"><%= furniture.name %></option>
+      <% end %>
+      </select>
+      <input type="button" name="previous" class="previous action-button btn btn-success" value="Précédent" />
+      <input type="button" name="next" class="next action-button btn btn-success" value="Suivant" />
+    </fieldset>
+  </div>
+
+  <div class="card-show-grid-todo border-and-margin" >
     <div class="vertical-color-line <%= "#{@report.priority.name}" + "-color" %>"></div>
     <div class="priority-text text-form">Priorité :</div>
     <div class="priority content-form-important <%= "#{@report.priority.name}" + "-text-color" %>">
       <%=@report.priority.name %>
     </div>
     <div class="creation-date-text text-form">Déclaré le : </div>
-    <div class="creation-date content-form-important"><%=@report.submit_date %></div>
+    <div class="creation-date content-form-important"><%=l(@report.submit_date, format: '%d %B %Y', :locale => 'fr') %></div>
     <div class="resolution-date-text text-form">
-      <% if @report.resolution_date.nil? %>
+      <% if @report.status.name == "Résolu" %>
         <%= "" %>
       <% else %>
         <%="Résolu le :" %>
       <% end %>
     </div>
     <div class="resolution-date content-form-important">
-      <% if @report.resolution_date.nil? %>
+      <% if @report.status.name == "Résolu" %>
         <%= "" %>
       <% else %>
-        <%=@report.resolution_date %>
+        <%=l(@report.resolution_date, format: '%d %B %Y', :locale => 'fr') %>
       <% end %>
     </div>
     <div class="degradation-text text-form">Dégradation :</div>
@@ -85,6 +107,9 @@
     <div class="location content-form"> <%=@report.address %></div>
     <div class="description-text text-form">Descritpion :</div>
     <div class="description content-form"> <%=@report.description %></div>
+    <button class="btn-edit-show">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </button>
     <div class="cta-box">
       <div class="status-text text-form"> Slectionnez le status en cours :</div>
       <div class="status-btn attente">
@@ -122,6 +147,7 @@
       <div class="status-btn resolu">
         <%= simple_form_for @report do |f| %>
           <%= f.input :status_id, as: :hidden,  input_html: {value: Status.find_by_name('Résolu').id} %>
+          <%= f.input :resolution_date, as: :hidden,  input_html: {value: Date.today} %>
           <%= f.button :button, class: "#{@report.status.name == 'Résolu' ? 'selected-btn' :  'unselected-btn'} btn-style" do %>
             RÉSOLU
           <% end %>
@@ -140,28 +166,21 @@
      <!-- <div class="resolution"><%#=@report.resolution_date %></div>-->
     <div class="messages border-and-margin">
       <div class="list-of-messages">
-      <div class="card-message-title"> Ajoutez vos notes :</div>
-        <% @report.messages.order(submit_message_date: :desc).each do |mes| %>
-            <div class="card-message-todo">
-              <div class="message-content"> <%=mes.note %> </div>
-              <div class="message-date"><%=mes.submit_message_date %></div>
-            </div>
-        <% end %>
+      <div class="card-message-title"> Vos notes</div>
+        <div id="messages-container">
+          <% @report.messages.order(submit_message_date: :desc).each do |mes| %>
+              <%= render 'messages/show', message: mes %>
+          <% end %>
+        </div>
       </div>
       <div class="form-add-a-message">
-        <%= simple_form_for [@report,   @new_message] do | f | %>
-          <%= f.input :note %>
-          <%= f.submit %>
-        <% end %>
-        <!-- <form action="">
-            <input type="text" name="new-message" class="input-text-message">
-            <input type="submit" value="Add" class="btn-message">
-        </form> -->
+        <%= render 'messages/form', message: @new_message, report: @report %>
       </div>
     </div>
     <div class="picture-flexbox">
-      <%#= image_tag "graffiti.jpg" %>
-      <%= cl_image_tag @report.picture.path, crop: :fill %>
+      <% if @report.picture.present? %>
+        <%= cl_image_tag @report.picture.path, crop: :fill %>
+      <% end %>
     </div>
     <div id="map"></div>
     <% content_for(:after_js) do %>
@@ -199,7 +218,7 @@
           orientation: "top right",
           postion: "absolute",
           startDate: date,
-          datesDisabled: <%= raw @reservedDates %>
+          // datesDisabled: <%#= raw @reservedDates %>
         });
       });
       </script>
@@ -207,11 +226,12 @@
   </div>
 </div>
 
+
 <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
 
 <script>
   // JS for the hover of the cards
-  const cards = document.querySelectorAll('.card-index-todo');
+  const cards = document.querySelectorAll('.card-index-unopened');
 
   function addColor() {
     let classToAdd = this.childNodes[1].classList[1]
@@ -255,4 +275,7 @@
   btnByDate.addEventListener('click', sortByDate);
 
 </script>
+
+
+
 

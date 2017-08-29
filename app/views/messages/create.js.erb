@@ -1,0 +1,9 @@
+
+// Create a paragraph for the new message. But hide it.
+  var new_message = $("<%= j render 'messages/show', message: @message %>").hide();
+  // Add it to the DOM, at the end of the existing messages. It's still hidden.
+  $('#messages-container').append(new_message);
+  // Show the new message with an animation!
+  new_message.slideDown();
+  // Reset the form
+  $('#new_message').html("<%= j render 'messages/form', report: @report, message: Message.new %>");

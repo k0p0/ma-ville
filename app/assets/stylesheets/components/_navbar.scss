@@ -98,19 +98,19 @@
     font-weight: lighter !important;
     text-align: center;
     margin-top: -7px;
-    margin-bottom: 3vh;
   }
 
 .nav-item-test {
   border: solid 1px $light-gray;
   border-radius: 10px;
-  margin: 9px;
+  margin: 8px;
   background-color: black;
-  opacity: 0.25;
+  opacity: 0.15;
   cursor: pointer;
 
   &:hover {
     // transform: scale(1.1);
+    // opacity: 0.8;
     background-color: $green;
   }
 }
@@ -118,7 +118,8 @@
 .selected-test {
   border: solid 1px $light-gray;
   border-radius: 10px;
-  margin: 9px;
+  margin: 8px;
+  // opacity: 0.8 !important;
   background-color: $green !important;
 }
 

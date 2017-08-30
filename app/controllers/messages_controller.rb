@@ -22,7 +22,10 @@ class MessagesController < ApplicationController
     end
     # binding.pry
     if @message.save
-      redirect_to report_path(@report)
+      respond_to do |format|
+       format.html { redirect_to report_path(@report) }
+       format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     else
       render :new
     end

@@ -12,7 +12,7 @@
 
   <% if user_signed_in? %>
     <% unless current_page?(root_path) %>
-      <h2 class="text-center dash-title city-underline"> <%= current_user.city.name.upcase %></h2>
+      <h2 class="text-center dash-title"> - <%= current_user.city.name.upcase %> -</h2>
     <% end %>
   <% end %>
 

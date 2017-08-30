@@ -57,28 +57,9 @@
     </div>
   </div>
 
-  <div class="card-edit-report border-and-margin" style="display: none;">
-    <fieldset>
-      <h2 class="fs-title">Type d'incident</h2>
-      <h3 class="fs-subtitle">Quel incident ?</h3>
-      <select class="form-control select required" name="report[degradation_id]" id="report_degradation_id"><option value=""></option>
-      <% Degradation.all.each do |degration| %>
-      <option value="<%= degration.id %>"><%= degration.name %></option>
-      <% end %>
-      </select>
-      <h3 class="fs-subtitle">Sur quel mobilier ?</h3>
-      <select class="form-control select required" name="report[furniture_id]" id="report_furniture_id"><option value=""></option>
-      <% Furniture.all.each do |furniture| %>
-      <option value="<%= furniture.id %>"><%= furniture.name %></option>
-      <% end %>
-      </select>
-      <input type="button" name="previous" class="previous action-button btn btn-success" value="Précédent" />
-      <input type="button" name="next" class="next action-button btn btn-success" value="Suivant" />
-    </fieldset>
-  </div>
 
   <div class="card-show-grid-todo border-and-margin" >
-    <div class="vertical-color-line <%= "#{@report.priority.name}" + "-color" %>"></div>
+    <div class="vertical-color-line <%#= "#{@report.priority.name}" + "-color" %>"></div>
     <div class="priority-text text-form">Priorité :</div>
     <div class="priority content-form-important <%= "#{@report.priority.name}" + "-text-color" %>">
       <%=@report.priority.name %>
@@ -106,7 +87,13 @@
     <div class="location-text text-form">Addresse :</div>
     <div class="location content-form"> <%=@report.address %></div>
     <div class="description-text text-form">Descritpion :</div>
-    <div class="description content-form"> <%=@report.description %></div>
+    <div class="description content-form">
+    <% if @report.description %>
+      <%= "Aucune description n'a été ajoutée par le lanceur d'alerte." %>
+    <% else %>
+      <%=@report.description %>
+    <% end %>
+    </div>
     <button class="btn-edit-show">
       <i class="fa fa-pencil" aria-hidden="true"></i>
     </button>
@@ -148,7 +135,7 @@
         <%= simple_form_for @report do |f| %>
           <%= f.input :status_id, as: :hidden,  input_html: {value: Status.find_by_name('Résolu').id} %>
           <%= f.input :resolution_date, as: :hidden,  input_html: {value: Date.today} %>
-          <%= f.button :button, class: "#{@report.status.name == 'Résolu' ? 'selected-btn' :  'unselected-btn'} btn-style" do %>
+          <%= f.button :button, class: "#{@report.status.name == 'Résolu' ? 'selected-btn' :  'unselected-btn'} btn-style resolu-box" do %>
             RÉSOLU
           <% end %>
         <% end %>
@@ -156,7 +143,7 @@
       <div class="status-btn annule">
         <%= simple_form_for @report do |f| %>
           <%= f.input :status_id, as: :hidden,  input_html: {value: Status.find_by_name('Annulé').id} %>
-          <%= f.button :button, class: "#{@report.status.name == 'Annulé' ? 'selected-btn' :  'unselected-btn'} btn-style" do %>
+          <%= f.button :button, class: "#{@report.status.name == 'Annulé' ? 'selected-btn' :  'unselected-btn'} btn-style annule-box" do %>
             ANNULÉ
           <% end %>
         <% end %>
@@ -180,6 +167,8 @@
     <div class="picture-flexbox">
       <% if @report.picture.present? %>
         <%= cl_image_tag @report.picture.path, crop: :fill %>
+      <% else %>
+        <%= image_tag "no_picture.png" %>
       <% end %>
     </div>
     <div id="map"></div>
@@ -207,21 +196,7 @@
           });
         });
       </script>
-      <script>
-      let date = new Date();
-      date.setDate(date.getDate()-1);
 
-      $(document).ready(function(){
-        $('.datepicker').datepicker({
-          language: 'fr',
-          autoclose: true,
-          orientation: "top right",
-          postion: "absolute",
-          startDate: date,
-          // datesDisabled: <%#= raw @reservedDates %>
-        });
-      });
-      </script>
     <% end %>
   </div>
 </div>

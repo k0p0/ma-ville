@@ -9,11 +9,14 @@
   align-items: center;
   justify-content: space-between;
   z-index: 1;
+  h2 {
+    margin-left: 140px;
+  }
 }
 .dash-title {
-  font-style: italic;
   letter-spacing: 2px;
-  font-family: 'Ultra', serif !important;
+  font-family: 'Nunito', serif !important;
+  margin-left: 140px;
 }
 
 
@@ -109,7 +112,6 @@
 
   &:hover {
     // transform: scale(1.1);
-    opacity: 0.8;
     background-color: $green;
   }
 }
@@ -118,7 +120,6 @@
   border: solid 1px $light-gray;
   border-radius: 10px;
   margin: 9px;
-  opacity: 0.8 !important;
   background-color: $green !important;
 }
 

@@ -55,22 +55,21 @@
 }
 
 .typeahead,
-.tt-query,
+.tt-query
 .tt-hint {
-  width: 200px;
+  width: 12em;
   height: 30px;
   padding: 8px 12px;
   font-size: 15px;
   line-height: 30px;
-  border: 2px solid #ccc;
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
+  border: 2px solid white;
+  border-radius: 8px;
   outline: none;
+  color: white;
 }
 
 .typeahead {
-  background-color: #fff;
+  background: transparent;
 }
 
 .tt-query {
@@ -84,7 +83,7 @@
 }
 
 .tt-menu {
-  width: 200px;
+  width: 10em;
   margin: 12px 0;
   padding: 8px 0;
   background-color: #fff;
@@ -113,6 +112,17 @@
 .tt-suggestion.tt-cursor {
   color: #fff;
   background-color: $green;
+}
+
+.search_city {
+  display: none;
+
+  &.display {
+    display:block;
+  }
+  & input::placeholder {
+    color: white;
+  }
 }
 
 // .tt-suggestion p {

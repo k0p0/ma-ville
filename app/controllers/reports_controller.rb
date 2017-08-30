@@ -1,4 +1,4 @@
-require 'JSON'
+require 'json'
 require 'open-uri'
 
 class ReportsController < ApplicationController
@@ -8,10 +8,14 @@ class ReportsController < ApplicationController
 
   def index
     @reports = current_user.reports
-
     @report = @reports.first
-    show
-    render :show
+
+    if @report
+      show
+      render :show
+    else
+      render :index
+    end
   end
 
   def show
@@ -27,13 +31,10 @@ class ReportsController < ApplicationController
   end
 
   def new
-
-
     @report = Report.new
   end
 
   def create
-
     @report = Report.new(report_params)
 
     # A REVOIR

@@ -1,4 +1,4 @@
-require 'JSON'
+require 'json'
 require 'open-uri'
 
 class ReportsController < ApplicationController

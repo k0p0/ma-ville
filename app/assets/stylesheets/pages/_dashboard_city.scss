@@ -53,21 +53,18 @@ margin-left: 0;
   padding: 0px;
   overflow-x: hidden;
   overflow-y: auto;
+  margin-left: 10px;
 
-  /* Scrollable contents if viewport is shorter than content. */
-  /* offset-x | offset-y | blur-radius | spread-radius | color */
-  // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  // box-shadow: 1px 0 0 0 rgba(0,0,0,0.07),2px 0 0 0 rgba(0,0,0,0.03);
   img {
     margin: 15px;
   }
 }
 
 .nav-item-icon-description-test{
-    font-size: 10px !important;
-    font-weight: lighter !important;
+    font-size: 12px !important;
     text-align: center;
     margin-top: -7px;
+    margin-bottom: 3vh;
   }
 
 .nav-item-test {

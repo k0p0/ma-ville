@@ -9,14 +9,10 @@
   align-items: center;
   justify-content: space-between;
   z-index: 1;
-  h2 {
-    margin-left: 140px;
-  }
 }
 .dash-title {
   letter-spacing: 2px;
   font-family: 'Nunito', serif !important;
-  margin-left: 140px;
 }
 
 
@@ -85,6 +81,8 @@
   padding: 0px;
   overflow-x: hidden;
   overflow-y: auto;
+  margin-left: 10px;
+
 
   /* Scrollable contents if viewport is shorter than content. */
   /* offset-x | offset-y | blur-radius | spread-radius | color */
@@ -100,6 +98,7 @@
     font-weight: lighter !important;
     text-align: center;
     margin-top: -7px;
+    margin-bottom: 3vh;
   }
 
 .nav-item-test {

@@ -1,3 +1,6 @@
+require 'JSON'
+require 'open-uri'
+
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
   # before_action :set_default, only: [:create, :update]
@@ -24,10 +27,13 @@ class ReportsController < ApplicationController
   end
 
   def new
+
+
     @report = Report.new
   end
 
   def create
+
     @report = Report.new(report_params)
 
     # A REVOIR

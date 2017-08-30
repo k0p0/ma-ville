@@ -2,7 +2,7 @@ class CitiesController < ApplicationController
 
   before_action :set_visitor_city, only: [ :infos]
   before_action :set_user_city, only: [:show, :update]
-  skip_before_action :authenticate_user!, only: [:show, :index, :infos]
+  skip_before_action :authenticate_user!, only: [:show, :index, :infos, :autocomplete, :search]
 
   def show
     if current_user && current_user.city == @city
@@ -71,6 +71,30 @@ class CitiesController < ApplicationController
     end
   end
 
+  def autocomplete
+    render json: City.search(params[:query], {
+      fields: ["name"],
+      match: :word_start,
+      limit: 10,
+      load: false,
+      misspellings: {below: 5}
+      }).map(&:name)
+  end
+
+  def search
+    if params[:query].nil?
+      redirect_to root_path
+    end
+    city = City.find_by(name: params[:query])
+    if city.nil?
+      redirect_to root_path
+    else
+      redirect_to infos_city_path(city.id)
+    end
+  end
+
+
+
   private
 
   def set_visitor_city
@@ -84,4 +108,9 @@ class CitiesController < ApplicationController
   def city_params
     params.require(:city).permit(:name, :zip_code, :insee_code, :city_latitude, :city_longitude, :population, :density, :area, :mayor, :region, :department, :council_address, :council_phone, :council_website, :council_email)
   end
+
+  def query_params
+    params.permit(:query)
+  end
+
 end

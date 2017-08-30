@@ -9,6 +9,10 @@ gem 'puma'
 gem 'rails', '5.1.3'
 gem 'redis'
 
+gem 'searchkick', '~> 1.3'
+gem 'twitter-typeahead-rails'
+
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'

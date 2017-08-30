@@ -1,4 +1,6 @@
 class City < ApplicationRecord
+  searchkick word_start: [:name]
+
   has_many :reports
   has_many :users
   validates :name, presence: true, allow_blank: false

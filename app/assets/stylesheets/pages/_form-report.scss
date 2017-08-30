@@ -52,6 +52,8 @@
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 5px;
+    font-size: 10px;
+
   }
 
   .action-button:hover, #msform .action-button:focus {
@@ -78,7 +80,7 @@
 }
 .form-control {
   font-family: $body-font;
-  font-size: 15px;
+  font-size: 12px;
   margin-bottom: 15px;
 }
 /*progressbar*/

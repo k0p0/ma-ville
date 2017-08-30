@@ -1,107 +1,83 @@
-<!-- </div>
-<div class="stage">
-  <div class="tile population">
-    <h1>Population:</h1>
-    <h2><%= @city.population %> habitants</h2>
-  </div>
-    <div class="tile region">
-  <h1>Région:</h1>
-  <h2><%= @city.region %></h2>
-  </div>
-    <div class="tile department">
-  <h1>Département:</h1>
-  <h2><%= @city.department %></h2>
-  </div>
-  <div class="tile zip_code">
-    <h1>Code postal:</h1>
-    <h2><%= @city.zip_code %></h2>
-  </div>
-    <div class="tile address">
-  <h1>Adresse Mairie:</h1>
-  <h2><%= @city.council_address %></h2>
-  </div>
-    <div class="tile phone">
-  <h1>Téléphone Mairie:</h1>
-  <h2><%= @city.council_phone %></h2>
-  </div>
-</div> -->
+<div class="page-incidents">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-<div class="container city-info">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4">
-      <div class="card council">
-        <div class="card-description">
-          <h2>Infos Mairie:</h2>
-          <p>Population: <%= @city.population %> habitants</p>
-          <p>Région: <%= @city.region %></p>
-          <p>Département: <%= @city.department %></p>
-          <p>Code postal: <%= @city.zip_code %></p>
-          <p>Adresse Mairie: <%= @city.council_address %></p>
-          <p>Téléphone Mairie: <%= @city.council_phone %></p>
-          <p>E-mail Mairie: <%= @city.council_email%></p>
-          <p>Site Mairie: <%= @city.council_website %></p>
+  <div class="incidents">
+    <% @reports.order(submit_date: :desc).each do |rep| %>
+      <% if rep.furniture.name == "Immeuble / Commerce / Monument" %>
+        <% degr = "immeuble.svg" %>
+      <% elsif rep.furniture.name == "Chaussée / Voirie" %>
+        <% degr = "voirie.svg" %>
+      <% elsif rep.furniture.name == "Signalétique / Eclairage" %>
+        <% degr = "signal.svg" %>
+      <% elsif rep.furniture.name == "Parcs / Jardins" %>
+        <% degr = "parc.svg" %>
+      <% elsif rep.furniture.name == "Chantier" %>
+        <% degr = "chantier.svg" %>
+      <% else %>
+        <% degr = "urbain.svg" %>
+      <% end %>
+      <div class="incident">
+        <% elapsed_time = (Date.today - rep.submit_date).to_i %>
+        <% if elapsed_time == 0 %>
+          <p id="text-right">Aujourd'hui</p>
+        <% else %>
+          <p id="text-right">Il y a <%= pluralize(elapsed_time, "jour") %></p>
+        <% end %>
+        <div class="flex-incident">
+          <div class="status-incident text-center">
+            <% if rep.status.name == 'En attente de traitement' %>
+              <%= image_tag("atraiter.svg", class: "img-status") %>
+              <p id="color-attente">En attente</p>
+            <% elsif rep.status.name == 'Commande en cours' %>
+              <%= image_tag("commande.svg", class: "img-status") %>
+              <p id="color-commande">Commandé</p>
+            <% elsif rep.status.name == 'Intervention programmée' %>
+              <%= image_tag("programme.svg", class: "img-status") %>
+              <p id="color-programme">Programmé</p>
+            <% else %>
+              <%= image_tag("encours.svg", class: "img-status") %>
+              <p id="color-encours">En cours</p>
+            <% end %>
+          </div>
+          <div class="incident-content">
+            <div class="flex-incident-content">
+              <div>
+              <p><%= rep.degradation.name %></p>
+              <p id="inc-addr" ><%= rep.address.split(",")[0] %></p>
+              </div>
+              <div style="padding-left: 25px;">
+              <%= image_tag(degr, class: "img-degr") %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-        <div class="card">
-        <!-- GOOGLE MAP -->
-          <div id="map" style=" height: 40vh; border-radius: 5px; "></div>
-          <% content_for(:after_js) do %>
-          <%= javascript_tag do %>
-          $(document).ready(function() {
-          var handler = Gmaps.build('Google');
-          handler.buildMap({ internal: { id: 'map' } }, function() {
-          markers = handler.addMarkers(<%= raw @hash.to_json %>);
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-          if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-          } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
-          }
-          });
-          });
-          <% end %>
-        <% end %>
-      </div>
-      <!-- GOOGLE MAP END -->
-    </div>
-    <div class="col-xs-12 col-sm-4">
-    <div class="card">
-      <div class="cards-mini-index">
-        <div id="sort-by-priority">
-        <h3 class="text-center">Les incidents à <%= @city.name %>:</h3>
-          <% @reports.order(submit_date: :desc).each do |rep| %>
-          <div class="card-mini-index-todo">
-            <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
-            <div class="degradation"> <%=rep.degradation.name %> </div>
-            <div class="creation-date"><%=rep.submit_date %></div>
-            <div class="furniture"> <%=rep.furniture.name %> </div>
-            <div class="status"> <%= rep.status.name %> </div>
+    <% end %>
+  </div>
+  </div>
+  <!-- <h2>Si vous voulez contacter votre mairie</h2> -->
+  <div class="container card-mairie">
+  <div class = "row">
+    <div class = "col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="card-base">
+        <div class="card-icon ima"><%= image_tag("Library.svg", class:"imagecard") %>
+          <div class="card-data widgetCardData">
+            <h2 class="box-title">Mairie de <%= @city.name %></h2>
+
+            <p class="card-block text-center"><%= @city.council_address %></p>
+            <p class="card-block text-center"><%= @city.council_email %></p>
+            <p class="card-block text-center"><%= @city.council_website %></p>
+            <p class="card-block text-center"><%= @city.council_phone %></p>
           </div>
-      <% end %>
+        </div>
+    </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <%= link_to 'Accueil', root_path, class: "btn btn--border btn--primary btn--animated" %>
     </div>
   </div>
 </div>
 
-
-<script>
-  // JS for the hover of the cards
-  const cards = document.querySelectorAll('.card-mini-index-todo');
-
-  function addColor() {
-    let classToAdd = this.childNodes[1].classList[1]
-    this.classList.add(classToAdd);
-  }
-
-  function removeColor() {
-    let classToRemove = this.childNodes[1].classList[1]
-    this.classList.remove(classToRemove);
-  }
-
-  cards.forEach(card => card.addEventListener('mouseenter', addColor));
-  cards.forEach(card => card.addEventListener('mouseleave', removeColor));
-</script>
+</div>

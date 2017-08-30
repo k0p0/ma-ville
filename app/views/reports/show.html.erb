@@ -87,9 +87,9 @@
     <div class="creation-date content-form-important"><%=l(@report.submit_date, format: '%d %B %Y', :locale => 'fr') %></div>
     <div class="resolution-date-text text-form">
       <% if @report.status.name == "Résolu" %>
-        <%= "" %>
-      <% else %>
         <%="Résolu le :" %>
+      <% else %>
+        <%= "" %>
       <% end %>
     </div>
     <div class="resolution-date content-form-important">

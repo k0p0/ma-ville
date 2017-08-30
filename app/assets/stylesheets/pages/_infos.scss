@@ -77,6 +77,15 @@
   justify-content: space-around;
 }
 
+.incident-content {
+  flex: 0 0 60%;
+  padding: 0 10px;
+}
+
+.flex-incident-content-logo {
+  flex: 0 0 15%;
+}
+
 .incident-content p {
   margin: 0;
   font-size: 15px;
@@ -84,9 +93,9 @@
 }
 
 .status-incident {
+  flex: 0 0 25%;
   font-size: 15px;
   border-right: 1px solid #EEEEEE;
-  padding-right: 15px;
 }
 
 .status-incident p {
@@ -135,5 +144,5 @@
 }
 
 .img-degr {
-  height: 30px;
+  height: 40px;
 }

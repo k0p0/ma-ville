@@ -23,6 +23,8 @@
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition,errorPostion,options );
   }
+  var output = document.getElementById("out");
+  output.value = "Recherche...";
   }
   function showPosition(position) {
       var lat=position.coords.latitude;
@@ -47,18 +49,25 @@
               break;
       }
       alert("Error : " + errorMessage);
+
+
   }
 
   function findAddress(point) {
   var geocoder = new google.maps.Geocoder();
     geocoder.geocode({latLng: point}, function(results, status) {
+
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[0]) {
+          var output = document.getElementById("out");
+          output.value = "Trouvé !";
           document.getElementById('address').value=results[0].formatted_address;
           document.getElementById('postal_code').value=results[0].address_components[6].long_name;
           document.getElementById('city').value=results[0].address_components[2].long_name;
-
         }
       }
     });
+
   }
+
+

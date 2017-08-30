@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # resources :statuses
 
   # AS SOMEONE THAT REPORTS AN INIDENT
-  resources :cities, only: [:index, :show, :edit, :update]  do
+  resources :cities, only: []  do
     collection do
       get :autocomplete
       post :search
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reports, only: [:new, :create ]
+  # resources :reports, only: [:new, :create ]
 
 
   # AS CITY OWNER
@@ -34,3 +34,4 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount Attachinary::Engine => "/attachinary"
 end
+

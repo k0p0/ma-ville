@@ -59,21 +59,35 @@
           <!-- GOOGLE MAP -->
           <div id="map" style="width: 100%; height: 700px; border-radius: 5px; "></div>
           <% content_for(:after_js) do %>
-          <%= javascript_tag do %>
-          $(document).ready(function() {
-          var handler = Gmaps.build('Google');
-          handler.buildMap({ internal: { id: 'map' } }, function() {
-          markers = handler.addMarkers(<%= raw @hash.to_json %>);
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-          if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-          } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
-          }
-          });
-          });
-          <% end %>
+<%= javascript_tag do %>
+        $(document).ready(function() {
+        var styles = [
+        {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+        {
+        "visibility": "off"
+        }
+        ]
+        }
+        ];
+        var handler = Gmaps.build('Google');
+        handler.buildMap({
+        provider: {styles: styles  },
+        internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        <!-- map.setOptions({styles: noPoi}); -->
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+        handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+        handler.getMap().setZoom(14);
+        }
+        });
+        });
+        <% end %>
           <% end %>
         </div>
         <!-- GOOGLE MAP END -->

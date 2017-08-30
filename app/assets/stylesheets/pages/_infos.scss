@@ -1,0 +1,135 @@
+.card-base > .card-icon {
+        text-align: center;
+        position: relative;
+    }
+
+.imagecard {
+    z-index: 2;
+    background-color: white;
+    display: block;
+    position: relative;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    border: 5px solid #2E5871;
+    // box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    margin: 0 auto;
+    color: white;
+}
+.card-base > .card-icon > .card-data {
+    min-height: 250px !important;
+    margin-top: -24px;
+    border-radius: 20px;
+    background: white;
+    // border: 1px solid #e0e0e0;
+    padding: 15px 0 10px 0;
+     // box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    min-height: 215px;
+    }
+    #widgetCardIcon {
+        background: #bb7824 !important;
+        font-size: 28px;
+        line-height: 78px;
+    }
+
+.card-data p {
+  margin-bottom: 0;
+}
+
+.page-incidents {
+  background-color: rgb(46, 88, 113);
+  min-height: 100vh;
+  z-index: 2;
+}
+
+.incidents {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.incident {
+  background-color: white;
+  height: 15vh;
+  margin: 5px 0px;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+  border-radius: 6px;
+}
+
+#text-right {
+  text-align: right;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: lighter;
+  margin-right: 5px;
+  opacity: 0.7;
+}
+
+.flex-incident {
+  display: flex;
+  align-item: center;
+  justify-content: space-around;
+}
+
+.incident-content p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.status-incident {
+  font-size: 15px;
+  border-right: 1px solid #EEEEEE;
+  padding-right: 15px;
+}
+
+.status-incident p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.flex-incident-content {
+  display: flex;
+  align-item: center;
+  justify-content: space-around;
+}
+
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#color-attente {
+  color: $red;
+}
+
+#color-encours {
+  color: $yellow;
+}
+
+#color-programme {
+  color: $orange;
+}
+
+#color-commande {
+  color: $yellow;
+}
+
+#color-annule {
+
+}
+
+#inc-addr {
+  font-weight: lighter;
+  font-size: 13px;
+}
+
+.img-status {
+  height: 30px;
+}
+
+.img-degr {
+  height: 30px;
+}

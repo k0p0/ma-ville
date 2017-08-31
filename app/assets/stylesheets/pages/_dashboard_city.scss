@@ -53,6 +53,8 @@ margin-left: 0;
   padding: 0px;
   overflow-x: hidden;
   overflow-y: auto;
+  margin-left: 10px;
+
 
   /* Scrollable contents if viewport is shorter than content. */
   /* offset-x | offset-y | blur-radius | spread-radius | color */
@@ -73,7 +75,7 @@ margin-left: 0;
 .nav-item-test {
   border: solid 1px $light-gray;
   border-radius: 10px;
-  margin: 9px;
+  margin: 8px;
   background-color: black;
   opacity: 0.15;
   cursor: pointer;
@@ -88,7 +90,7 @@ margin-left: 0;
 .selected-test {
   border: solid 1px $light-gray;
   border-radius: 10px;
-  margin: 9px;
+  margin: 8px;
   // opacity: 0.8 !important;
   background-color: $green !important;
 }

@@ -2,7 +2,7 @@
   display: grid;
   height: calc(100vh - 70px);
   // width: 100%;
-  grid-template-columns: 80px 1fr 65% ;
+  grid-template-columns: 100px 1fr 68% ;
   grid-template-rows: 50px 1fr ;
   background-color: $background-color-show;
   // AUTRE CHOIX DE BACKGROUND:
@@ -15,7 +15,7 @@
   border-radius: 2px;
   margin: 10px;
   * {
-    font-size: 11px;
+    font-size: 1.7vh;
   }
 
 }
@@ -48,7 +48,7 @@
     margin: 0 0 3px 0;
     border-bottom: solid 0.3px $light-gray;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    min-height: 22px;
+    min-height: 3vh;
 
     display: grid;
     grid-template-rows: 1fr ;
@@ -60,12 +60,12 @@
       opacity: 1;
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;
-      padding-top: 4px;
-      font-size: 10px;
+      padding: 0.8vh;
+      font-size: 1.3vh;
 
       &.unselected{
-        font-weight: lighter;
         cursor: pointer;
+        padding: 0.8vh;
         &:hover {
           // opacity: 0.8;
           color: $green
@@ -86,13 +86,13 @@
       opacity: 1;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
-      padding-top: 4px;
-      font-size: 10px;
+      padding: 0.8vh;
+      font-size: 1.3vh;
 
 
       &.unselected{
-        font-weight: lighter;
         cursor: pointer;
+        padding: 0.8vh;
         &:hover {
           // opacity: 0.8;
           color: $green
@@ -109,10 +109,10 @@
   }
 
   .card-index-todo{
-    min-height: 80px;
-    max-height: 80px;
+    min-height: 12vh;
+    max-height: 12vh;
     display: grid;
-    grid-template-columns: 10px 70% 1fr ;
+    grid-template-columns: 10px 68% 1fr ;
     grid-template-rows: 1fr 1fr 1fr 1fr ;
 
     * {
@@ -129,7 +129,7 @@
       grid-row: 1 / span 2;
       grid-column: 1 / span 1;
       width: 10px;
-      height: 78px;
+      height: 11.73vh;
       border: 0;
       border-top-right-radius: 1px;
       border-bottom-right-radius: 1px;
@@ -140,7 +140,7 @@
       grid-row: 1 / span 2;
       grid-column: 2 / span 1;
       font-weight: bold;
-      margin-top: 17px;
+      margin-top: 1.9vh;
     }
     .furniture {
       grid-row: 3 / span 2;
@@ -151,14 +151,14 @@
       grid-row: 3 / span 2;
       grid-column: 3 / span 1;
       text-align: right;
-      font-size: 9px;
+      font-size: 1.5vh;
     }
     .creation-date {
       grid-row: 1 / span 2;
       grid-column: 3 / span 1;
-      margin-top: 17px;
+      margin-top: 1.9vh;
       text-align: right;
-      font-size: 9px;
+      font-size: 1.5vh;
 
     }
   }
@@ -175,8 +175,8 @@
 
 
   display: grid;
-  grid-template-columns: 13px 87px 151px 74px 101px 1fr 1fr 1fr 1fr 1fr 1fr ;
-  grid-template-rows: 26px 32px 32px 32px 32px 39px 101px 1fr;
+  grid-template-columns: 1vh 15vh 32vh 12vh 16vh 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 3vh 5.5vh 5.5vh 5.5vh 5.5vh 9vh 16vh 1fr 3vh;
 
   .vertical-color-line {
     grid-row: 1 / span 8;
@@ -188,19 +188,18 @@
   }
 
   .text-form {
-    font-size: 11px;
+    font-size: 2vh;
     color: $real-gray;
     margin-left: 13px;
   }
 
   .content-form {
-    font-size: 11px;
+    font-size: 2vh;
     font-weight: lighter;
-    color: $real-gray;
   }
 
   .content-form-important {
-    font-size: 11px;
+    font-size: 2vh;
     font-weight: bold;
   }
 
@@ -271,25 +270,28 @@
 
   .description {
     grid-row: 6 / span 1;
-    grid-column: 3 / span 2;
-    width: 235px;
+    grid-column: 3 / span 3;
+    width: 47vh;
 
   }
 
   .btn-edit-show {
+
     grid-row: 6 / span 1;
     grid-column: 5 / span 1;
-    margin: 3px 0px 5px 46px;
+    margin: 5vh 0px 5px 9vh;
     padding: 0px;
     border-radius: 4px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     font-weight: lighter;
-    width: 32px;
+    width: 3.4vh;
     background-color: white;
     border: 0;
-    height: 25px;
+    height: 3.4vh;
+    opacity: 0.8;
+
     * {
-      font-size: 12px !important;
+      font-size: 2.6vh !important;
     }
     &:hover {
       color: $green;
@@ -305,7 +307,7 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
-    grid-template-rows: 33% 1fr ;
+    grid-template-rows: 39% 1fr ;
     height: 100% ;
     margin-left: 20px;
     margin-right: 20px;
@@ -323,25 +325,22 @@
       }
       .btn-style {
         padding: 0;
-        width: 14vh;
-        font-size: 9px;
+        width: 100%;
+        font-size: 1.5vh;
         height: 7vh;
-        border-radius: 4px;
+        border-radius: 0px;
         cursor: pointer;
 
 
       }
       .selected-btn {
         // opacity: 0.8;
-        border: solid 2px $green;
+        border: solid 1px black;
         background-color: white;
-        font-weight: bold;
-        font-size: 10px;
-        box-shadow: 0.3px 0.3px 0.3px rgba(0, 0, 0, 0.3);
+        font-size: 1.6vh;
 
 
         &.annule-box {
-          border: solid 2px $red;
           background-color: $red !important;
           color: white !important;
         }
@@ -356,30 +355,40 @@
       }
 
       .unselected-btn {
-        opacity: 1;
-        background-color: white;
+        opacity: 0.9;
+        background-color: $light-gray;
+        border-color: transparent;
+        border-top: solid 0.3px $real-gray;
+        border-bottom: solid 0.3px $real-gray;
+        border-right: solid 0.1px $real-gray;
+
 
 
         &:hover {
-          border: solid 0.5px $green;
+          // opacity: 1;
+           background-color: #ddd;
+          // border: solid 0.5px black;
+        }
+
+        &.attente-box {
+          border-left: solid 0.3px $real-gray;
         }
 
         &.annule-box {
-          border: solid 1px $red !important;
-          color: $red;
+          background-color: $red !important;
+          color: white !important;
+          border-right: solid 0.3px $real-gray;
           &:hover {
-            background-color: $red !important;
-            color: white !important;
+            opacity: 1;
           }
 
         }
 
         &.resolu-box {
-          border: solid 1px $green !important;
-          color: $green;
+          background-color: $green !important;
+          color: white !important;
           &:hover {
-            background-color: $green !important;
-            color: white !important;
+            opacity: 1;
           }
         }
       }
@@ -412,7 +421,7 @@
 
   .messages {
     grid-row: 8 / span 1;
-    grid-column: 2 / span 3;
+    grid-column: 2 / span 2;
     border: solid 0.3px $light-gray;
     border-radius: 2px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
@@ -420,18 +429,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    max-height: 38vh;
+
   }
 
   .picture-flexbox {
     grid-row: 8 / span 1;
-    grid-column: 5 / span 7;
+    grid-column: 4 / span 8;
     display: flex;
     justify-content: center;
     align-items: center;
     color: $real-gray;
+    max-height: 38vh;
+
 
     img {
-      max-height: 43vh;
+      max-height: 38vh;
       max-width: 97%;
       border-radius: 4px;
       box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
@@ -443,7 +456,7 @@
     grid-row:  2 / span 5;
     grid-column: 6 / span 6;
     border: 0px;
-    max-height: 178px;
+    max-height: 35vh;
     width: 98%;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     border-radius: 2px;
@@ -488,32 +501,32 @@
     background-color: white;
     margin-bottom: 11px;
     border-bottom: solid 0.6px $light-gray;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0.3px 0.3px 0.3px rgba(0, 0, 0, 0.3);
     color: $real-gray;
-    height: 16px;
   }
   .card-message-todo {
     border-bottom: solid 0.3px $light-gray;
     display: grid;
     margin: -3px 10px 12px 10px;
-    padding: 2px;
-    min-height: 57px;
+    padding: 1vh;
+    min-height: 8vh;
 
     .message-content{
       font-weight: lighter;
+      margin: 1.7vh 0;
     }
     .message-date{
       text-align: center;
       color: $real-gray;
       font-weight: lighter;
-      font-size: 9px;
+      font-size: 1.4vh;
     }
   }
 }
 .form-add-a-message{
   border-top: solid 0.6px $light-gray;
   text-align: center;
-  height: 60px;
+  height: 11vh;
   margin: 0;
 
   form {
@@ -528,21 +541,21 @@
   }
 
   .input-text-message {
-     width: 210px !important;
-     height: 50px;
-     resize: none;
-     margin: 0px;
-     padding: 2px;
+    width: 32vh !important;
+    height: 9vh;
+    resize: none;
+    margin: 0px;
+    padding: 2px;
   }
   input {
     margin: 0px;
-    padding: 0px;
-    font-size: 10px;
+    padding-top: 0.2vh;
+    font-size: 1.5vh;
     border-radius: 4px;
     // opacity: 0.8;
-    width: 55px;
-    margin-top: 23px;
-    height: 22px;
+    width: 9vh;
+    margin-top: 6.3vh;
+    height: 2.5vh;
     background-color: white;
     border: solid 0.1px $green;
     color: $real-gray;

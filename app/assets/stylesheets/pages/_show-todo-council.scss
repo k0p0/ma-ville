@@ -355,9 +355,13 @@
       }
 
       .unselected-btn {
-        opacity: 0.8;
+        opacity: 0.9;
         background-color: $light-gray;
         border-color: transparent;
+        border-top: solid 0.3px $real-gray;
+        border-bottom: solid 0.3px $real-gray;
+        border-right: solid 0.1px $real-gray;
+
 
 
         &:hover {
@@ -366,9 +370,14 @@
           // border: solid 0.5px black;
         }
 
+        &.attente-box {
+          border-left: solid 0.3px $real-gray;
+        }
+
         &.annule-box {
           background-color: $red !important;
           color: white !important;
+          border-right: solid 0.3px $real-gray;
           &:hover {
             opacity: 1;
           }
@@ -532,11 +541,11 @@
   }
 
   .input-text-message {
-     width: 31vh !important;
-     height: 6vh;
-     resize: none;
-     margin: 0px;
-     padding: 2px;
+    width: 32vh !important;
+    height: 9vh;
+    resize: none;
+    margin: 0px;
+    padding: 2px;
   }
   input {
     margin: 0px;
@@ -545,7 +554,7 @@
     border-radius: 4px;
     // opacity: 0.8;
     width: 9vh;
-    margin-top: 3.3vh;
+    margin-top: 6.3vh;
     height: 2.5vh;
     background-color: white;
     border: solid 0.1px $green;

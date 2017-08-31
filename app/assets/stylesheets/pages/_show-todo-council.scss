@@ -330,24 +330,33 @@
         height: 7vh;
         border-radius: 0px;
         cursor: pointer;
-
-
+        border-color: transparent;
+        border-top: solid 0.3px $real-gray;
+        border-bottom: solid 0.3px $real-gray;
+        border-left: solid 0.15px $real-gray;
       }
+      // .attente-box: {
+      //   border-left: solid 0.15px $real-gray !important;
+      // }
       .selected-btn {
         // opacity: 0.8;
-        border: solid 1px black;
-        background-color: white;
+        // border: solid 0.5px $real-gray;
+        background-color: $real-gray;
+        color: white;
         font-size: 1.6vh;
 
 
         &.annule-box {
           background-color: $red !important;
           color: white !important;
+          border: solid 0.3px $red;
+
         }
 
         &.resolu-box {
           background-color: $green !important;
           color: white !important;
+          border: solid 0.3px $green;
         }
 
 
@@ -356,11 +365,10 @@
 
       .unselected-btn {
         opacity: 0.9;
-        background-color: $light-gray;
-        border-color: transparent;
-        border-top: solid 0.3px $real-gray;
-        border-bottom: solid 0.3px $real-gray;
-        border-right: solid 0.1px $real-gray;
+        background-color: white;
+
+        // border-bottom: solid 0.3px $real-gray;
+        // border-right: solid 0.1px $real-gray;
 
 
 
@@ -370,25 +378,25 @@
           // border: solid 0.5px black;
         }
 
-        &.attente-box {
-          border-left: solid 0.3px $real-gray;
-        }
+        // &.attente-box {
+        //   border-left: solid 0.3px $real-gray;
+        // }
 
         &.annule-box {
-          background-color: $red !important;
-          color: white !important;
-          border-right: solid 0.3px $real-gray;
+          color: $red;
+          border-right: solid 0.15px $real-gray;
           &:hover {
-            opacity: 1;
+            background-color: $red !important;
+            color: white !important;
           }
 
         }
 
         &.resolu-box {
-          background-color: $green !important;
-          color: white !important;
+          color: $green;
           &:hover {
-            opacity: 1;
+            background-color: $green !important;
+            color: white !important;
           }
         }
       }

@@ -4,12 +4,14 @@
   height: 100vh;
   background-position: center;
   z-index: 2;
+  display: flex;
+  align-items: center;
 }
 
 #msform {
   width: 400px;
-  padding-top: 6em;
-  padding-right: 20px;
+  // padding-top: 6em;
+  // padding-right: 20px;
   margin: auto;
   text-align: center;
   position: relative;
@@ -137,10 +139,10 @@
   }
 }
 
-@media (max-width: 720px) {
-  #msform {
-    padding-top: 4em;
-  }
-}
+// @media (max-width: 720px) {
+//   #msform {
+//     padding-top: 4em;
+//   }
+// }
 
 

@@ -33,7 +33,7 @@ module MaVille
     # -- all .rb files in that directory are automatically loaded.
 
     # i18n
-    # config.i18n.default_locale = :fr
+    config.i18n.default_locale = :fr
 
 
     # Don't generate system test files.

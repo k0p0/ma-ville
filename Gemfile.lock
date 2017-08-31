@@ -79,6 +79,7 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.2.0)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     elasticsearch (5.0.4)
@@ -262,6 +263,7 @@ DEPENDENCIES
   cloudinary
   coffee-rails
   devise
+  devise-i18n
   figaro
   font-awesome-sass
   geocoder

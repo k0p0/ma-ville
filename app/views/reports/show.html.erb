@@ -88,7 +88,7 @@
     <div class="location content-form"> <%=@report.address %></div>
     <div class="description-text text-form">Descritpion :</div>
     <div class="description content-form">
-    <% if @report.description %>
+    <% if @report.description.blank? %>
       <%= "Aucune description n'a été ajoutée par le lanceur d'alerte." %>
     <% else %>
       <%=@report.description %>

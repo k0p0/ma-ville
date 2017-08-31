@@ -92,3 +92,4 @@ puts "all degradations are created"
 #   degradation_id: 6, furniture_id: 3, city_id: 1, priority_id: 2, status_id: 4)
 
 # puts "all reports are created"
+

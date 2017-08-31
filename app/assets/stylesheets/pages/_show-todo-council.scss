@@ -112,7 +112,7 @@
     min-height: 12vh;
     max-height: 12vh;
     display: grid;
-    grid-template-columns: 10px 68% 1fr ;
+    grid-template-columns: 10px 64% 1fr ;
     grid-template-rows: 1fr 1fr 1fr 1fr ;
 
     * {
@@ -557,13 +557,13 @@
   }
   input {
     margin: 0px;
-    padding-top: 0.2vh;
+    padding-top: 0.6vh;
     font-size: 1.5vh;
     border-radius: 4px;
     // opacity: 0.8;
     width: 9vh;
-    margin-top: 6.3vh;
-    height: 2.5vh;
+    margin-top: 5.5vh;
+    height: 3.5vh;
     background-color: white;
     border: solid 0.1px $green;
     color: $real-gray;

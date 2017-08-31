@@ -48,7 +48,7 @@ class CitiesController < ApplicationController
   end
 
   def infos
-    @reports = @city.reports.all.where.not(report_latitude: nil, report_longitude: nil)
+    @reports = @city.reports.all.joins(:status).where.not(report_latitude: nil, report_longitude: nil, statuses: {name: ["Résolu", "Annulé"]})
     @hash = Gmaps4rails.build_markers(@reports) do |report, marker|
       marker.lat report.report_latitude
       marker.lng report.report_longitude

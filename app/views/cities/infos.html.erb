@@ -2,7 +2,7 @@
   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
   <div class="incidents">
-    <% @reports.order(submit_date: :desc).each do |rep| %>
+    <% @reports.order(id: :desc).each do |rep| %>
       <% if rep.furniture.name == "Immeuble / Commerce / Monument" %>
         <% degr = "immeuble.svg" %>
       <% elsif rep.furniture.name == "Chaussée / Voirie" %>

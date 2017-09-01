@@ -34,7 +34,7 @@
             <div class="card-index-todo border-and-margin <%= rep == @report ? "#{rep.priority.name}" + "-color" : "card-index-unopened" %>">
               <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
               <div class="degradation"> <%=rep.degradation.name %> </div>
-              <div class="creation-date"><%=l(rep.submit_date, format: '%d %B %Y', :locale => 'fr') %></div>
+              <div class="creation-date"><%=l(rep.submit_date, format: '%d %b %Y', :locale => 'fr') %></div>
               <div class="furniture"> <%=rep.furniture.name %> </div>
               <div class="status"> <%= rep.status.name %> </div>
             </div>
@@ -48,7 +48,7 @@
           <div class="card-index-todo border-and-margin <%= rep == @report ? "#{rep.priority.name}" + "-color" : "card-index-unopened" %>">
             <div class="priority-color-card <%= "#{rep.priority.name}" + "-color" %>"></div>
             <div class="degradation"> <%=rep.degradation.name %> </div>
-            <div class="creation-date"><%=l(rep.submit_date, format: '%d %B %Y', :locale => 'fr') %></div>
+            <div class="creation-date"><%=l(rep.submit_date, format: '%d %b %Y', :locale => 'fr') %></div>
             <div class="furniture"> <%=rep.furniture.name %> </div>
             <div class="status"> <%= rep.status.name %> </div>
           </div>
@@ -65,7 +65,7 @@
       <%=@report.priority.name %>
     </div>
     <div class="creation-date-text text-form">Déclaré le : </div>
-    <div class="creation-date content-form-important"><%=l(@report.submit_date, format: '%d %B %Y', :locale => 'fr') %></div>
+    <div class="creation-date content-form-important"><%=l(@report.submit_date, format: '%d %b %Y', :locale => 'fr') %></div>
     <div class="resolution-date-text text-form">
       <% if @report.status.name == "Résolu" %>
         <%="Résolu le :" %>
